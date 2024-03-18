@@ -9,12 +9,12 @@ export default function ReportsList() {
   return (
     <>
       <h1>Here is the reports list</h1>
-      {reports?.map((report: any, i: number) => (
+      {reports?.sort((a,b) => b.date - a.date).map((report: any, i: number) => (
         <p
           key={`report${i}`}
           onClick={()=>navigate('/report-details')}
         >
-          {`${report.date} at ${report.time} ${report.title} by ${report.author}`}
+          {`${report.date.toLocaleDateString()} at ${report.date.toLocaleTimeString()} ${typeof report.date} ${report.title} by ${report.author}`}
         </p>
       ))}
     </>

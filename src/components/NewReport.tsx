@@ -1,11 +1,9 @@
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useStore } from "../ContextStore.tsx"
-import isCard from "../validation/validators/isCreditCard.ts"
-import containsHTML from "../validation/validators/containsHTML.ts"
+import inputValidator from "../validation/inputValidator.ts"
 
 type Inputs = {
-  date: string
-  time: string
+  date: object
   title: string
   author: string
 }
@@ -19,23 +17,17 @@ export default function NewReport() {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
   } = useForm<Inputs>()
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const date = new Date(Date.now())
     data = {
       ...data,
-      date: date.toLocaleDateString(),
-      time: date.toLocaleTimeString()
+      date: new Date(Date.now())
     }
     updateReports(data)
     reset()
   }
-
-  console.log('title', watch("title"), 'author', watch("author"))
-
 
   return (
 
@@ -43,18 +35,8 @@ export default function NewReport() {
 
       <input
         {...register("title", {
-          validate: {
-            containsHTML: (fieldValue) => {
-              return (
-                !containsHTML(fieldValue) || "Invalid entry. Field cannot contain HTML"
-              )
-            },
-            notCreditCard: (fieldValue) => {
-              return (
-                !isCard(fieldValue) || "Cannot use Credit Card number in this field"
-              )
-            }
-          }
+          required: "A title is required",
+          validate: inputValidator
         })}
         style={{width: "20rem"}}
         placeholder="title"
@@ -63,26 +45,13 @@ export default function NewReport() {
 
       <input
         {...register("author", {
-          // required: true,
-          validate: {
-            containsHTML: (fieldValue) => {
-              return (
-                !containsHTML(fieldValue) || "Invalid entry. Field cannot contain HTML"
-              )
-            },
-            notCreditCard: (fieldValue) => {
-              return (
-                !isCard(fieldValue) || "Cannot use Credit Card number in this field"
-              )
-            }
-          }
+          required: "An author is required",
+          validate: inputValidator
         })}
         style={{width: "20rem"}}
         placeholder="author"
       />
-      <p className="error">{errors.title?.message}</p>
-      {/* errors will return when field validation fails  */}
-      {/* {errors.author && <span>This field is required</span>} */}
+      <p className="error">{errors.author?.message}</p>
 
       <input style={{width: "5rem"}} type="submit" />
     </form>

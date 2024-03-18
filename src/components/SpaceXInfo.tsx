@@ -2,36 +2,43 @@ import { useQuery, gql } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { Launch } from '../../utils/types.ts'
 
+
+const missionName = true
+const missionID = true
+const missionDate = true
+const details = true
+
 const GET_LAUNCHES = gql`
-  {
-    launchesPast {
-      launch_date_local
-      mission_name
-      mission_id
-      details
-      id
-      is_tentative
-      launch_success
-      launch_year
-      upcoming
-    }
+query Launches {
+  launchesPast {
+    ${missionName ? 'mission_name' : ''}
+    ${missionID ? 'mission_id' : ''}
+    ${missionDate ? 'launch_date_local' : ''}
+    ${details ? 'details' : ''}
   }
+}
 `;
 
 export default function SpaceX_Info() {
 
-  const { loading, error, data } = useQuery(GET_LAUNCHES)
+  // const limit = 20
+  // const sort = "mission_name"
+  // const order = "asc"
 
+  const { loading, error, data } = useQuery(GET_LAUNCHES)
   const [recentLaunches, setRecentLaunches] = useState([])
+
+  // if (loading) return 'Loading...';
+  // if (error) return `Error! ${error.message}`;
 
   useEffect(() => {
     if (data) {
       console.log("data", data)
-      let launches = data?.launchesPast
-      console.log("launches", launches)
-      launches = launches.slice(launches.length - 20).reverse()
-      console.log("updated launches", launches)
-      setRecentLaunches(launches)
+      // let launches = data?.launchesPast
+      // console.log("launches", launches)
+      // launches = launches.slice(launches.length - 20).reverse()
+      // console.log("updated launches", launches)
+      // setRecentLaunches(launches)
     }
   }, [data])
 
@@ -40,7 +47,7 @@ export default function SpaceX_Info() {
       <h2>SpaceX Launces</h2>
       <table>
         <tbody>
-          {recentLaunches?.map((launch: Launch) => (
+          {data?.launchesPast?.map((launch: Launch) => (
             <tr key={launch.mission_id[0]}>
               <td >{new Date(launch.launch_date_local).toLocaleDateString()}</td>
               <td style={{textAlign: "left"}}>{launch.mission_name}</td>
