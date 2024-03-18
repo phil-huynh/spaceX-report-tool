@@ -1,0 +1,18 @@
+import isValidCardFormat from "../utils/isValidCardFormat.ts"
+import passesLuhnAlgorithm from "../utils/passesLuhnsAlgorith.ts"
+
+export default function isCard(val: string): boolean | Array<boolean | string[]> {
+  const value: Array<string> = val.split('').filter((char: string) => char != ' ')
+  if (isNaN(Number(value.join('')))) {
+    return false
+  }
+
+  const isCardFormat = isValidCardFormat(value.join(''))
+  if (isCardFormat) {
+    const cards = isCardFormat[1]
+    if (passesLuhnAlgorithm(value)) {
+      return [true, cards]
+    }
+  }
+  return false
+}
