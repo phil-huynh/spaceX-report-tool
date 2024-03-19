@@ -71,7 +71,12 @@ td {
   border-bottom: rgb(7, 132, 242) solid 1px;
   border-right: rgb(7, 132, 242) solid 1px;
   border-left: rgb(7, 132, 242) solid 1px;
-  text-align: left;
+  text-align: center;
+}
+
+.rocket-name {
+  text-wrap: nowrap;
+  text-align: center;
 }
 
 

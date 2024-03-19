@@ -89,70 +89,68 @@ export default function SpaceX_Info() {
   if (error) return `Error! ${error.message}`;
 
   let headers: string[];
-
   if (data) {
-    let launches = data?.launchesPast
-    console.log(launches)
-    headers = Object.keys(launches[0])
+    headers= Object.keys(data?.launchesPast[0])
       .slice(1)
       .filter(header => (
         !['id', 'mission_id'].includes(header)
       ))
     if (headers.includes('rocket')) {
-      headers.splice(
-        headers.indexOf('rocket'),
-        1,
-        'rocket_name', 'rocket_type'
-      )
+      headers.splice( headers.indexOf('rocket'), 1, 'rocket_name')
     }
 
   }
 
   return (
     <>
-      <table>
-        <thead>
-          <tr>
-            {headers.map((header) => (
-              <th className='table-header'>{unSnakeToTitle(header)}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data?.launchesPast?.slice().reverse().map((launch: Launch) => (
-            <tr key={launch.id}>
-              {headers.includes('launch_date_local') && <td>{new Date(launch.launch_date_local).toLocaleDateString()}</td>}
-              {headers.includes('mission_name') && <td style={{textAlign: "left"}}>{launch.mission_name}</td>}
-              {headers.includes('details') && <td style={{fontSize: ".8rem"}}>{launch.details ? launch.details : "No details available"}</td>}
-              {headers.includes('static_fire_date_utc') &&
-                <td>{launch.static_fire_date_utc ? new Date(launch.static_fire_date_utc).toLocaleDateString() : ""}</td>
-              }
-              {headers.includes('rocket_name') && <td>{launch.rocket?.rocket_name}</td>}
-              {headers.includes('rocket_type') && <td>{launch.rocket?.rocket_type}</td>}
-              {headers.includes('links') &&
-              <td className='links-td'>
-                {Object.keys(launch.links).filter((link) => launch.links[link] && !Array.isArray(launch.links[link])).slice(1).map((link: string) => (
-                  <div>
-                    <p
-                    style={{
-                      margin: "none",
-                      border: "red 1 px solid",
-                      lineHeight: "7px",
-                      fontSize: ".8rem",
-                      textAlign: "left"
-                }}
-                    >
-                      <span>{`${unSnakeToTitle(link)}:  `}</span>
-                      <a href={launch.links[link]}>{launch.links[link]}</a>
-                    </p>
-                  </div>
-                ))}
-              </td>
-              }
+      {data &&
+        <table>
+          <thead>
+            <tr>
+              {headers.map((header) => (
+                <th className='table-header'>{unSnakeToTitle(header)}</th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data?.launchesPast?.slice().reverse().map((launch: Launch) => (
+              <tr key={launch.id}>
+                {headers.includes('launch_date_local') && <td>{new Date(launch.launch_date_local).toLocaleDateString()}</td>}
+                {headers.includes('mission_name') && <td>{launch.mission_name}</td>}
+                {headers.includes('details') && <td style={{fontSize: ".8rem", textAlign: "left"}}>{launch.details ? launch.details : "No details available"}</td>}
+                {headers.includes('static_fire_date_utc') &&
+                  <td>{launch.static_fire_date_utc ? new Date(launch.static_fire_date_utc).toLocaleDateString() : ""}</td>
+                }
+                {headers.includes('rocket_name') && <td className='rocket-name'>{launch.rocket?.rocket_name}</td>}
+                {/* {headers.includes('rocket_type') && <td>{launch.rocket?.rocket_type}</td>} */}
+                {headers.includes('links') &&
+                <td className='links-td'>
+                  {Object.keys(launch.links)
+                    .filter((link) => launch.links[link] && !Array.isArray(launch.links[link]))
+                    .slice(1)
+                    .map((link: string) => (
+                    <div>
+                      <p
+                      style={{
+                        margin: "none",
+                        border: "red 1 px solid",
+                        lineHeight: "7px",
+                        fontSize: ".8rem",
+                        textAlign: "left"
+                      }}
+                      >
+                        <span>{`${unSnakeToTitle(link)}:  `}</span>
+                        <a href={launch.links[link]}>{launch.links[link]}</a>
+                      </p>
+                    </div>
+                  ))}
+                </td>
+                }
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      }
       {/* <button onClick={()=>getLaunches()}>Get Launches</button> */}
     </>
   )

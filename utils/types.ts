@@ -239,7 +239,7 @@ export type Launch = {
   details?: string;
   id?: string;
   is_tentative?: boolean;
-  launch_date_local?: object;
+  launch_date_local?: object | string;
   launch_site?: LaunchSite;
   launch_success?: boolean;
   links?: LaunchLinks;
@@ -247,8 +247,7 @@ export type Launch = {
   mission_name?: string;
   rocket?: LaunchRocket;
   ships?: Ship[];
-  static_fire_date_utc?: object;
-  telemetry?: Telemetry;
+  static_fire_date_utc?: object | string;
   tentative_max_precision?: string;
   upcoming?: boolean;
 }
