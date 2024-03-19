@@ -7,6 +7,7 @@ import ReportsList from './components/ReportsList.tsx';
 import ReportDetails from './components/ReportDetails.tsx';
 import ContextProvider from './ContextStore.tsx'
 import ErrorPage from './components/ErrorPage.tsx';
+import Options from './components/toggleSets/Options.tsx';
 import './index.css';
 import {
   createBrowserRouter,
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
+        element: <Options/>
+      },
+      {
+        path: '/launch-data',
         element: <SpaceXInfo/>
       },
       {

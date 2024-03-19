@@ -8,10 +8,18 @@ export default function NavBar() {
   return (
     <nav>
       <ul>
+        <li className='nav-item' onClick={()=>setSelectedNav('options')}>
+          <NavLink
+            className={selectedNav === 'options' ? 'current-page' : 'nav-link'}
+            to="/"
+            >
+              Options
+            </NavLink>
+        </li>
         <li className='nav-item' onClick={()=>setSelectedNav('spaceX')}>
           <NavLink
             className={selectedNav === 'spaceX' ? 'current-page' : 'nav-link'}
-            to="/"
+            to="/launch-data"
             >
               SpaceX Data
             </NavLink>

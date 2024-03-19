@@ -18,9 +18,6 @@ export type LaunchSite = {
   site_name_long?: string;
 }
 
-export type Telemetry = {
-  flight_club?: string;
-}
 
 export type ShipLocation ={
   latitude?: number;
@@ -257,8 +254,65 @@ export type Launch = {
 }
 
 
+export type Report = {
+  title: string;
+  author: string;
+  report: string;
+}
 
 
 
+export type LaunchToggleSet = {
+  launch_date_local: boolean;
+  mission_name: boolean;
+  details: boolean;
+  static_fire_date_utc: boolean;
+  rocket: boolean;
+  links: boolean;
+}
 
 
+
+export type LinkToggleSet = {
+  article_link: boolean;
+  flickr_images: boolean;
+  presskit: boolean;
+  reddit_campaign: boolean;
+  reddit_launch: boolean;
+  reddit_media: boolean;
+  reddit_recovery: boolean;
+  video_link: boolean;
+  wikipedia: boolean;
+}
+
+export type LaunchSiteToggles = {
+  site_name?: boolean;
+  site_name_long?: boolean;
+}
+
+export type ShipTOggles = {
+  abs: boolean;
+  active: boolean;
+  class: boolean;
+  home_port: boolean;
+  id: boolean;
+  image: boolean;
+  imo: boolean;
+  mmsi: boolean;
+  model: boolean;
+  name: boolean;
+  roles: boolean;
+  type: boolean;
+  year_built: boolean;
+}
+
+
+export type RocketToggles = {
+  rocket?: Rocket;
+  rocket_name?: string;
+  rocket_type?: string;
+}
+
+// recovered?: boolean;
+// recovery_attempt?: boolean;
+// reused?: boolean;
