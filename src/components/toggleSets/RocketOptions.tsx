@@ -5,6 +5,11 @@ export default function RocketOptions() {
 
   const { rocketToggles, setRocketToggles, unSnakeToTitle } = useStore()
 
+  if (!setRocketToggles || !unSnakeToTitle) {
+    throw new Error('function cannot be undefined')
+  }
+  if (!rocketToggles) throw new Error('rocketToggles cannot be undefined')
+
   return (
     <>
     <div className='toggle-container glass'>

@@ -9,6 +9,9 @@ export default function Options() {
   const { setSelectedNav , launchToggles } = useStore()
   const navigate = useNavigate()
 
+  if (!setSelectedNav) throw new Error('function cannot be undefined')
+  if (!launchToggles) throw new Error('launchToggles cannot be undefined')
+
   const goToSpaceXData = () => {
     navigate('/launch-data')
     setSelectedNav('spaceX')

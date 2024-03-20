@@ -13,6 +13,10 @@ export default function NewReport() {
 
   const { updateReports } = useStore()
 
+  if(!updateReports) {
+    throw new Error("function cannot be undefined")
+  }
+
   const {
     register,
     handleSubmit,

@@ -5,6 +5,8 @@ export default function NavBar() {
 
   const { selectedNav, setSelectedNav } = useStore()
 
+  if(!setSelectedNav) throw new Error('function cannot be undefined')
+
   return (
     <nav>
       <ul className='nav-bar'>

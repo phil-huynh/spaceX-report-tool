@@ -1,3 +1,6 @@
+import { Dispatch, SetStateAction } from "react";}
+
+
 export type Distance = {
   feet?: number;
   meters?: number;
@@ -19,6 +22,7 @@ export type Report = {
   author: string;
   report: string;
 }
+
 
 export type LaunchToggleSet = {
   launch_date_local: boolean;
@@ -62,6 +66,36 @@ export type RocketToggleSet = {
   type: boolean;
   wikipedia: boolean;
   success_rate_pct: boolean;
+}
+
+export type LaunchList = {
+  current: Launch[]
+}
+
+export type ContextStoreType = {
+  launchList?: LaunchList;
+  launchToggles: LaunchToggleSet;
+  linkToggles: LinkToggleSet;
+  reports: Report[];
+  rocketToggles: RocketToggleSet;
+  selectedNav: string;
+  startIndex: number;
+  endIndex: number;
+  interval: number;
+  bulkSelect: (toggleSet: string, type: string) => void;
+  goToNextPage: () => void;
+  goToPreviousPage: () => void;
+  goToFirstPage: () => void;
+  goToLastPage: () => void;
+  handleIntervalChange: (e: Event) => void
+  setLaunchToggles: Dispatch<SetStateAction<LaunchToggleSet>>;
+  setLinkToggles: Dispatch<SetStateAction<LinkToggleSet>>;
+  setReports: Dispatch<SetStateAction<Report[]>>
+  setRocketToggles: Dispatch<SetStateAction<RocketToggleSet>>
+  setSelectedNav: Dispatch<SetStateAction<string>>
+  unSnakeToTitle: (snakeCase: string) => string;
+  updateLaunchToggles: (key: string) => void;
+  updateReports: (report: Report) => void;
 }
 
 export type LaunchLinks = {

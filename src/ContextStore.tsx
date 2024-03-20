@@ -1,18 +1,37 @@
-import { useState, useContext, useRef, createContext, Dispatch, SetStateAction } from 'react'
-import { LaunchToggleSet, LinkToggleSet, RocketToggleSet, Report, Launch } from '../utils/types';
-import { set } from 'react-hook-form';
+import {
+  useState,
+  useContext,
+  useRef,
+  createContext,
+  Dispatch,
+  SetStateAction,
+  ReactNode
+} from 'react'
 
-const ContextStore = createContext(null);
+import {
+  LaunchToggleSet,
+  LinkToggleSet,
+  RocketToggleSet,
+  Report,
+  ContextStoreType,
+  LaunchList
+} from '../utils/types';
 
 
-export default function ContextProvider ({ children }) {
+type ContextStoreProviderProps = {
+  children: ReactNode
+}
 
-  const launchList = useRef()
+const ContextStore = createContext<Partial<ContextStoreType>>({});
+
+export default function ContextProvider ({ children }: ContextStoreProviderProps) {
+
+  const launchList = useRef<LaunchList>()
   const [reports, setReports] = useState<Report[]> ([])
   const [selectedNav, setSelectedNav] = useState<string> ('options')
-  const [startIndex, setStartIndex] = useState(0)
-  const [endIndex, setEndIndex] = useState(20)
-  const [interval, setInterval] = useState(20)
+  const [startIndex, setStartIndex] = useState<number>(0)
+  const [endIndex, setEndIndex] = useState<number>(20)
+  const [interval, setInterval] = useState<number>(20)
 
 
   const [launchToggles, setLaunchToggles] = useState<LaunchToggleSet> ({
@@ -107,20 +126,23 @@ export default function ContextProvider ({ children }) {
     }
   }
 
-  const updateLaunchToggles = (key) => {
+  const updateLaunchToggles = (key: string) => {
     setLaunchToggles({...launchToggles, [key]: !launchToggles[key]})
     if (!launchToggles.links) {
       updateToggles(linkToggles, 'clear', setLinkToggles)
     }
   }
 
-  const [pageNumbers, setPageNumbers] = useState([])
+  const [pageNumbers, setPageNumbers] = useState<number[]>([])
 
-  const handleIntervalChange = (e) => {
-    const value = Number(e.target.value)
-    setInterval(value)
-    setEndIndex(value)
-    setStartIndex(0)
+  const handleIntervalChange = (e: Event): void => {
+    const target: string | null = e.target.value
+    if(target) {
+      const value = Number(target)
+      setInterval(value)
+      setEndIndex(value)
+      setStartIndex(0)
+    }
   }
 
 
@@ -129,7 +151,7 @@ export default function ContextProvider ({ children }) {
       setStartIndex(startIndex - interval)
       setEndIndex(endIndex - interval)
     }
-    if (endIndex >= launchList.current.length) {
+    if (launchList.current &&endIndex >= launchList.current.length) {
       setEndIndex(startIndex)
       setStartIndex(startIndex - interval)
     }
@@ -147,15 +169,14 @@ export default function ContextProvider ({ children }) {
   }
 
   const goToLastPage = () => {
-    console.log(launchList.current.length/interval)
-    console.log(launchList.current.length)
-    setStartIndex(Math.floor(launchList.current.length/interval) * interval)
-    setEndIndex(launchList.current.length)
+    if(launchList.current)  {
+      setStartIndex(Math.floor(launchList.current.length/interval) * interval)
+      setEndIndex(launchList.current.length)
+    }
   }
 
 
-
-  const store = {
+  const store: ContextStoreType = {
     launchList: launchList,
     launchToggles: launchToggles,
     linkToggles: linkToggles,
@@ -164,6 +185,7 @@ export default function ContextProvider ({ children }) {
     selectedNav: selectedNav,
     startIndex: startIndex,
     endIndex: endIndex,
+    interval: interval,
     bulkSelect: bulkSelect,
     goToNextPage: goToNextPage,
     goToPreviousPage: goToPreviousPage,

@@ -8,8 +8,28 @@ import useRefreshRedirect from '../hooks/useRefreshRedirect.ts';
 export default function SpaceX_Info() {
   useRefreshRedirect()
 
-  const { unSnakeToTitle, launchList, startIndex, endIndex, goToPreviousPage, goToNextPage, handleIntervalChange, interval, goToFirstPage, goToLastPage  } = useStore()
+  const {
+    launchList,
+    startIndex,
+    endIndex,
+    interval,
+    goToPreviousPage,
+    goToNextPage,
+    goToFirstPage,
+    goToLastPage,
+    handleIntervalChange,
+    unSnakeToTitle
+  } = useStore()
+
+
   const {loading, error, data, headers} = useLaunchesQuery()
+
+  if (!launchList) {
+    throw new Error('launchList cannot be undefined')
+  }
+  if (!unSnakeToTitle) {
+    throw new Error('function cannot be undefined')
+  }
 
   if (loading) return <Loading/>;
   if (error) return `Error! ${error.message}`;
@@ -23,10 +43,10 @@ export default function SpaceX_Info() {
           <hr/>
           <div className='pagination-controls'>
 
-            <span className='pagination-button' onClick={()=>goToFirstPage()}>First</span>
-            <span className='pagination-button' onClick={()=>goToPreviousPage()}>Prev</span>
-            <span className='pagination-button' onClick={()=>goToNextPage()}>Next</span>
-            <span className='pagination-button' onClick={()=>goToLastPage()}>Last</span>
+            <span className='pagination-button' onClick={goToFirstPage}>First</span>
+            <span className='pagination-button' onClick={goToPreviousPage}>Prev</span>
+            <span className='pagination-button' onClick={goToNextPage}>Next</span>
+            <span className='pagination-button' onClick={goToLastPage}>Last</span>
           </div>
           <select
             className="interval-selector"
@@ -62,7 +82,9 @@ export default function SpaceX_Info() {
                   <td
                     className='glass'
                   >
-                    {new Date(launch.launch_date_local).toLocaleDateString()}
+                    {launch.launch_date_local &&
+                      new Date(launch.launch_date_local).toLocaleDateString()
+                    }
                   </td>
                 }
                 {headers.includes('static_fire_date_utc') &&

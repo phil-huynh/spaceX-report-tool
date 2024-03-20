@@ -6,6 +6,13 @@ export default function useLaunchesQuery() {
 
   const { launchToggles, linkToggles, rocketToggles, launchList } = useStore()
 
+  if (!launchToggles || !linkToggles || !rocketToggles) {
+    throw new Error('toggle set cannot be undefined')
+  }
+  if (!launchList) {
+    throw new Error('launchList cannot be undefined')
+  }
+
   const canGetLinks = (
     launchToggles.links &&
       Object.keys(linkToggles)
