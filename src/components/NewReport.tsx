@@ -6,6 +6,7 @@ type Inputs = {
   date: Date
   title: string
   author: string
+  body: string
 }
 
 export default function NewReport() {
@@ -30,29 +31,43 @@ export default function NewReport() {
 
   return (
 
-    <form className="report-form" onSubmit={handleSubmit(onSubmit)}>
+    <div className="form-container">
+      <form className="report-form glass" onSubmit={handleSubmit(onSubmit)}>
 
-      <input
-        {...register("title", {
-          required: "A title is required",
-          validate: inputValidator
-        })}
-        style={{width: "20rem"}}
-        placeholder="title"
-      />
-      <p className="error">{errors.title?.message}</p>
+        <input
+          {...register("title", {
+            required: "A title is required",
+            validate: inputValidator
+          })}
+          className="form-input"
 
-      <input
-        {...register("author", {
-          required: "An author is required",
-          validate: inputValidator
-        })}
-        style={{width: "20rem"}}
-        placeholder="author"
-      />
-      <p className="error">{errors.author?.message}</p>
+          placeholder="title"
+        />
+        <p className="error">{errors.title?.message}</p>
 
-      <input style={{width: "5rem"}} type="submit" />
-    </form>
+        <input
+
+          {...register("author", {
+            required: "An author is required",
+            validate: inputValidator
+          })}
+          className="form-input"
+          placeholder="author"
+        />
+        <p className="error">{errors.author?.message}</p>
+        <textarea
+          className="report-body"
+          rows={30}
+          cols={700}
+          {...register("body", {
+            validate: inputValidator
+          })}
+          placeholder="Enter your report here"
+        />
+        <p className="error">{errors.body?.message}</p>
+
+        <input className="form-submit" type="submit"/>
+      </form>
+    </div>
   )
 }

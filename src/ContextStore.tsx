@@ -129,10 +129,14 @@ export default function ContextProvider ({ children }) {
       setStartIndex(startIndex - interval)
       setEndIndex(endIndex - interval)
     }
+    if (endIndex >= launchList.current.length) {
+      setEndIndex(startIndex)
+      setStartIndex(startIndex - interval)
+    }
   }
 
   const goToNextPage = () => {
-    if (launchList.current && endIndex <= launchList.current.length)
+    if (launchList.current && endIndex < launchList.current.length)
       setStartIndex(startIndex + interval)
       setEndIndex(endIndex + interval)
   }
