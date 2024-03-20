@@ -1,17 +1,14 @@
-import { useQuery, gql } from '@apollo/client'
-import { useEffect, useState } from 'react'
 import { Launch } from '../../utils/types.ts'
 import { useStore } from '../ContextStore.tsx';
-import Loading from './Loading.tsx';
-import useLaunchesQuery from './customHooks/useLaunchesQuery.ts';
-import { useNavigate } from 'react-router-dom';
-import useRefreshRedirect from './customHooks/useRefreshRedirect.ts';
+import Loading from './utilityComponents/Loading.tsx';
+import useLaunchesQuery from '../hooks/useLaunchesQuery.ts';
+import useRefreshRedirect from '../hooks/useRefreshRedirect.ts';
 
 
 export default function SpaceX_Info() {
   useRefreshRedirect()
 
-  const { unSnakeToTitle, launchList  } = useStore()
+  const { unSnakeToTitle, launchList, startIndex, endIndex, goToPreviousPage, goToNextPage, handleIntervalChange, interval, goToFirstPage, goToLastPage  } = useStore()
   const {loading, error, data, headers} = useLaunchesQuery()
 
   if (loading) return <Loading/>;
@@ -21,6 +18,30 @@ export default function SpaceX_Info() {
     <>
       {data &&
       <>
+        <div className='glass table-page-header'>
+          <h2>SpaceX Launches</h2>
+          <hr/>
+          <div className='pagination-controls'>
+
+            <span className='pagination-button' onClick={()=>goToFirstPage()}>First</span>
+            <span className='pagination-button' onClick={()=>goToPreviousPage()}>Prev</span>
+            <span className='pagination-button' onClick={()=>goToNextPage()}>Next</span>
+            <span className='pagination-button' onClick={()=>goToLastPage()}>Last</span>
+          </div>
+          <select
+            className="interval-selector"
+            name="pagination_interval"
+            defaultValue={20}
+            value={interval}
+            onChange={handleIntervalChange}
+          >
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={40}>40</option>
+            <option value={50}>50</option>
+            <option value={100}>100</option>
+          </select>
+        </div>
         <table>
           <thead>
             <tr>
@@ -32,8 +53,8 @@ export default function SpaceX_Info() {
             </tr>
           </thead>
           <tbody>
-            {launchList.current.map((launch: Launch) => (
-              <tr key={launch.id}>
+            {launchList.current.slice(startIndex, endIndex).map((launch: Launch) => (
+              <tr key={launch.id} className='launch-row'>
                 {headers.includes('mission_name') &&
                   <td className='glass'>{launch.mission_name}</td>
                 }
@@ -45,13 +66,10 @@ export default function SpaceX_Info() {
                   </td>
                 }
                 {headers.includes('static_fire_date_utc') &&
-                  <td
-                    className='glass'
-
->
-                      {launch.static_fire_date_utc ?
-                        new Date(launch.static_fire_date_utc).toLocaleDateString() : ""
-                      }
+                  <td className='glass'>
+                    {launch.static_fire_date_utc ?
+                      new Date(launch.static_fire_date_utc).toLocaleDateString() : ""
+                    }
                   </td>
                 }
                 {headers.includes('rocket_name') &&
@@ -63,131 +81,14 @@ export default function SpaceX_Info() {
                     {launch.details ? launch.details : "No details available"}
                   </td>
                 }
-
-                {/* {headers.includes('links') &&
-                <td className='links-td glass'>
-                  {Object.keys(launch.links)
-                    .filter((link) => launch.links[link] && !Array.isArray(launch.links[link]))
-                    .slice(1)
-                    .map((link: string) => (
-                    <div>
-                      <p
-                      style={{
-                        margin: "none",
-                        border: "red 1 px solid",
-                        lineHeight: "7px",
-                        fontSize: ".8rem",
-                        textAlign: "left"
-                      }}
-                      >
-                        <span>{`${unSnakeToTitle(link)}:  `}</span>
-                        <a href={launch.links[link]} target='_blank'>{launch.links[link]}</a>
-                      </p>
-                    </div>
-                  ))}
-                </td>
-                } */}
               </tr>
             ))}
           </tbody>
         </table>
       </>
       }
-      {/* <button onClick={()=>getLaunches()}>Get Launches</button> */}
     </>
   )
 }
 
 
-
-// rocket {
-//   active
-//   boosters
-//   company
-//   cost_per_launch
-//   country
-//   description
-//   diameter {
-//     feet
-//     meters
-//   }
-//   engines {
-//     engine_loss_max
-//     layout
-//     number
-//     propellant_1
-//     propellant_2
-//     thrust_sea_level {
-//       kN
-//       lbf
-//     }
-//     thrust_to_weight
-//     thrust_vacuum {
-//       kN
-//       lbf
-//     }
-//     type
-//     version
-//   }
-//   first_flight
-//   first_stage {
-//     burn_time_sec
-//     engines
-//     fuel_amount_tons
-//     reusable
-//     thrust_sea_level {
-//       kN
-//       lbf
-//     }
-//     thrust_vacuum {
-//       kN
-//       lbf
-//     }
-//   }
-//   height {
-//     feet
-//     meters
-//   }
-//   id
-//   landing_legs {
-//     material
-//     number
-//   }
-//   mass {
-//     kg
-//     lb
-//   }
-//   name
-//   payload_weights {
-//     id
-//     kg
-//     lb
-//     name
-//   }
-//   second_stage {
-//     burn_time_sec
-//     engines
-//     fuel_amount_tons
-//     payloads {
-//       composite_fairing {
-//         diameter {
-//           meters
-//           feet
-//         }
-//         height {
-//           feet
-//           meters
-//         }
-//       }
-//       option_1
-//     }
-//     thrust {
-//       kN
-//       lbf
-//     }
-//   }
-//   stages
-//   type
-//   wikipedia
-//   success_rate_pct
-// }

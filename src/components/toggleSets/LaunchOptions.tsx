@@ -3,7 +3,7 @@ import BulkSelector from "./BulkSelector"
 
 export default function LaunchOptions() {
 
-  const{ launchToggles, updateLaunchToggles, unSnakeToTitle, bulkSelect } = useStore()
+  const{ launchToggles, updateLaunchToggles, unSnakeToTitle } = useStore()
 
   return (
     <>

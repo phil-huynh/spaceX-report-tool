@@ -6,10 +6,8 @@ import RocketOptions from './RocketOptions.tsx';
 import BulkSelector from './BulkSelector.tsx';
 
 export default function Options() {
-
-  const navigate = useNavigate()
-
   const { setSelectedNav , launchToggles } = useStore()
+  const navigate = useNavigate()
 
   const goToSpaceXData = () => {
     navigate('/launch-data')

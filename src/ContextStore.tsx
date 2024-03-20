@@ -6,10 +6,13 @@ const ContextStore = createContext(null);
 
 
 export default function ContextProvider ({ children }) {
-  const [reports, setReports] = useState<Report[]> ([])
-  const [selectedNav, setSelectedNav] = useState<string> ('options')
 
   const launchList = useRef()
+  const [reports, setReports] = useState<Report[]> ([])
+  const [selectedNav, setSelectedNav] = useState<string> ('options')
+  const [startIndex, setStartIndex] = useState(0)
+  const [endIndex, setEndIndex] = useState(20)
+  const [interval, setInterval] = useState(20)
 
 
   const [launchToggles, setLaunchToggles] = useState<LaunchToggleSet> ({
@@ -56,6 +59,7 @@ export default function ContextProvider ({ children }) {
     success_rate_pct: false,
   })
 
+
   const updateReports = (report: Report) => {
     setReports([...reports, report])
   }
@@ -65,8 +69,8 @@ export default function ContextProvider ({ children }) {
       .map((word: string) => (
         `${word[0].toUpperCase()}${word.slice(1)}`)
       ).join(' ')
-  )
 
+  )
   const updateToggles = (
     toggles: LaunchToggleSet | LinkToggleSet | RocketToggleSet,
     type: string,
@@ -110,6 +114,43 @@ export default function ContextProvider ({ children }) {
     }
   }
 
+  const [pageNumbers, setPageNumbers] = useState([])
+
+  const handleIntervalChange = (e) => {
+    const value = Number(e.target.value)
+    setInterval(value)
+    setEndIndex(value)
+    setStartIndex(0)
+  }
+
+
+  const goToPreviousPage = () => {
+    if (startIndex >= 20) {
+      setStartIndex(startIndex - interval)
+      setEndIndex(endIndex - interval)
+    }
+  }
+
+  const goToNextPage = () => {
+    if (launchList.current && endIndex <= launchList.current.length)
+      setStartIndex(startIndex + interval)
+      setEndIndex(endIndex + interval)
+  }
+
+  const goToFirstPage = () => {
+    setStartIndex(0)
+    setEndIndex(interval)
+  }
+
+  const goToLastPage = () => {
+    console.log(launchList.current.length/interval)
+    console.log(launchList.current.length)
+    setStartIndex(Math.floor(launchList.current.length/interval) * interval)
+    setEndIndex(launchList.current.length)
+  }
+
+
+
   const store = {
     launchList: launchList,
     launchToggles: launchToggles,
@@ -117,7 +158,14 @@ export default function ContextProvider ({ children }) {
     reports: reports,
     rocketToggles: rocketToggles,
     selectedNav: selectedNav,
+    startIndex: startIndex,
+    endIndex: endIndex,
     bulkSelect: bulkSelect,
+    goToNextPage: goToNextPage,
+    goToPreviousPage: goToPreviousPage,
+    goToFirstPage: goToFirstPage,
+    goToLastPage: goToLastPage,
+    handleIntervalChange: handleIntervalChange,
     setLaunchToggles: setLaunchToggles,
     setLinkToggles: setLinkToggles,
     setReports: setReports,

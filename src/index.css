@@ -56,6 +56,7 @@ h3 {
 
 table{
   margin: auto;
+  width: 100%;
 }
 
 th {
@@ -202,7 +203,10 @@ input {
 
 
 .table-header {
-  box-shadow: 1px 1px 4px #ececec;
+  background-color: rgba(15, 244, 45, 0.2);
+  box-shadow: 1px 1px 4px #57f608;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .toggle-header {
@@ -252,6 +256,26 @@ input {
 .details-cell {
   font-size: .9rem;
   text-align: left;
+}
+
+.table-page-header {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pagination-controls {
+  padding: 1rem;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagination-button {
+  cursor: pointer;
+}
+
+.launch-row:hover {
+  background-color: rgba(7, 132, 242, 0.4);
 }
 
 /* "https://media1.giphy.com/media/l5JbspfwZ0yjHjlJ0K/giphy.gif" */

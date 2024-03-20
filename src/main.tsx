@@ -6,7 +6,7 @@ import NewReport from './components/NewReport.tsx';
 import ReportsList from './components/ReportsList.tsx';
 import ReportDetails from './components/ReportDetails.tsx';
 import ContextProvider from './ContextStore.tsx'
-import ErrorPage from './components/ErrorPage.tsx';
+import ErrorPage from './components/utilityComponents/ErrorPage.tsx';
 import Options from './components/toggleSets/Options.tsx';
 import './index.css';
 import {
@@ -17,9 +17,7 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  // gql
 } from '@apollo/client';
-
 
 
 const router = createBrowserRouter([
@@ -67,7 +65,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </ApolloProvider>
   </React.StrictMode>,
 )
-
 
 // https://github.com/SpaceXLand/api/blob/master/src/utils/filters/order.ts
 // https://github.com/SpaceXLand/api/blob/master/src/utils/filters/sort.ts

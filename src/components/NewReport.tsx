@@ -3,11 +3,10 @@ import { useStore } from "../ContextStore.tsx"
 import inputValidator from "../validation/inputValidator.ts"
 
 type Inputs = {
-  date: object
+  date: Date
   title: string
   author: string
 }
-
 
 export default function NewReport() {
 
