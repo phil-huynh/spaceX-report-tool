@@ -1,8 +1,72 @@
+export type Distance = {
+  feet?: number;
+  meters?: number;
+}
+
+export type Force = {
+  kN?: number;
+  lbf?: number;
+}
+
+export type Mass = {
+  kg?: number;
+  lb?: number;
+}
+
+export type Report = {
+  date: Date;
+  title: string;
+  author: string;
+  report: string;
+}
+
+export type LaunchToggleSet = {
+  launch_date_local: boolean;
+  mission_name: boolean;
+  details: boolean;
+  static_fire_date_utc: boolean;
+  rocket: boolean;
+  links: boolean;
+}
+
+export type LinkToggleSet = {
+  article_link: boolean;
+  flickr_images: boolean;
+  presskit: boolean;
+  reddit_campaign: boolean;
+  reddit_launch: boolean;
+  reddit_media: boolean;
+  reddit_recovery: boolean;
+  video_link: boolean;
+  wikipedia: boolean;
+}
+
+export type RocketToggleSet = {
+  active: boolean;
+  boosters: boolean;
+  company: boolean;
+  cost_per_launch: boolean;
+  country: boolean;
+  description: boolean;
+  diameter: boolean;
+  engines: boolean;
+  first_flight: boolean;
+  first_stage: boolean;
+  height: boolean;
+  landing_legs: boolean;
+  mass: boolean;
+  name: boolean;
+  payload_weights: boolean;
+  second_stage: boolean;
+  stages: boolean;
+  type: boolean;
+  wikipedia: boolean;
+  success_rate_pct: boolean;
+}
+
 export type LaunchLinks = {
   article_link?: string;
   flickr_images?: string[];
-  mission_patch?: string;
-  mission_patch_small?: string;
   presskit?: string;
   reddit_campaign?: string;
   reddit_launch?: string;
@@ -10,56 +74,6 @@ export type LaunchLinks = {
   reddit_recovery?: string;
   video_link?: string;
   wikipedia?: string;
-}
-
-export type LaunchSite = {
-  site_id?: string;
-  site_name?: string;
-  site_name_long?: string;
-}
-
-
-export type ShipLocation ={
-  latitude?: number;
-  longitude?: number;
-}
-
-export type ShipMission = {
-  flight?: string;
-  name?: string;
-}
-
-export type Ship = {
-  abs?: number;
-  active?: boolean;
-  attempted_landings?: number;
-  class?: number;
-  course_deg?: number;
-  home_port?: string;
-  id?: string;
-  image?: string;
-  imo?: number;
-  missions?: ShipMission[];
-  mmsi?: number;
-  model?: string;
-  name?: string;
-  position?: ShipLocation;
-  roles?: string[];
-  speed_kn?: number;
-  status?: string;
-  successful_landings?: number;
-  type?: string;
-  url?: string;
-  weight_kg?: number;
-  weight_lbs?: number;
-  year_built?: number;
-}
-
-export type LaunchRocketFairings = {
-  recovered?: boolean;
-  recovery_attempt?: boolean;
-  reused?: boolean;
-  ship?: string;
 }
 
 export type CapsuleMission = {
@@ -135,16 +149,6 @@ export type LaunchRocketSecondStage ={
   payloads?: PayLoad[];
 }
 
-export type Distance = {
-  feet?: number;
-  meters?: number;
-}
-
-export type Force = {
-  kN?: number;
-  lbf?: number;
-}
-
 export type RocketEngines = {
   engine_loss_max?: string;
   layout?: string;
@@ -170,11 +174,6 @@ export type RocketFirstStage = {
 export type RocketLandingLegs = {
   material?: string;
   number?: number;
-}
-
-export type Mass = {
-  kg?: number;
-  lb?: number;
 }
 
 export type RocketPayloadWeight = {
@@ -227,7 +226,6 @@ export type Rocket = {
 }
 
 export type LaunchRocket = {
-  fairings?: LaunchRocketFairings;
   first_stage?: LaunchRocketFirstStage;
   rocket?: Rocket;
   rocket_name?: string;
@@ -238,80 +236,15 @@ export type LaunchRocket = {
 export type Launch = {
   details?: string;
   id?: string;
-  is_tentative?: boolean;
-  launch_date_local?: object | string;
-  launch_site?: LaunchSite;
-  launch_success?: boolean;
+  launch_date_local?: Date;
   links?: LaunchLinks;
   mission_id?: string[];
   mission_name?: string;
   rocket?: LaunchRocket;
-  ships?: Ship[];
-  static_fire_date_utc?: object | string;
-  tentative_max_precision?: string;
-  upcoming?: boolean;
-}
-
-
-export type Report = {
-  title: string;
-  author: string;
-  report: string;
+  static_fire_date_utc?: Date;
 }
 
 
 
-export type LaunchToggleSet = {
-  launch_date_local: boolean;
-  mission_name: boolean;
-  details: boolean;
-  static_fire_date_utc: boolean;
-  rocket: boolean;
-  links: boolean;
-}
 
 
-
-export type LinkToggleSet = {
-  article_link: boolean;
-  flickr_images: boolean;
-  presskit: boolean;
-  reddit_campaign: boolean;
-  reddit_launch: boolean;
-  reddit_media: boolean;
-  reddit_recovery: boolean;
-  video_link: boolean;
-  wikipedia: boolean;
-}
-
-export type LaunchSiteToggles = {
-  site_name?: boolean;
-  site_name_long?: boolean;
-}
-
-export type ShipTOggles = {
-  abs: boolean;
-  active: boolean;
-  class: boolean;
-  home_port: boolean;
-  id: boolean;
-  image: boolean;
-  imo: boolean;
-  mmsi: boolean;
-  model: boolean;
-  name: boolean;
-  roles: boolean;
-  type: boolean;
-  year_built: boolean;
-}
-
-
-export type RocketToggles = {
-  rocket?: Rocket;
-  rocket_name?: string;
-  rocket_type?: string;
-}
-
-// recovered?: boolean;
-// recovery_attempt?: boolean;
-// reused?: boolean;

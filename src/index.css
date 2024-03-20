@@ -29,11 +29,20 @@ body {
   min-width: 320px;
   min-height: 100vh;
   color: white;
-  background-color:#080804;
-  /* background-image: url("./assets/space.jpg"); */
+  /* background-color:#080804; */
+  background-image: url("./assets/space-image.jpeg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #363535;
+  margin: 1em 0;
+  padding: 0;
 }
 
 h1 {
@@ -50,10 +59,9 @@ table{
 }
 
 th {
-  color: greenyellow;
+  font-size: 1rem;
   padding: .5rem;
   background-color: black;
-  border: greenyellow solid 1px;
   opacity: .8;
 }
 
@@ -64,13 +72,13 @@ tr {
 
 td {
   color: white;
-  padding: .2rem;
+  padding: .7rem;
   padding-inline: .4rem;
   background-color: black;
   opacity: .8;
-  border-bottom: rgb(7, 132, 242) solid 1px;
+  /* border-bottom: rgb(7, 132, 242) solid 1px;
   border-right: rgb(7, 132, 242) solid 1px;
-  border-left: rgb(7, 132, 242) solid 1px;
+  border-left: rgb(7, 132, 242) solid 1px; */
   text-align: center;
 }
 
@@ -102,6 +110,16 @@ button:focus-visible {
 
 li {
   list-style-type: none;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.nav-item {
+  margin-inline: 2rem;
 }
 
 .nav-link,
@@ -147,14 +165,93 @@ input {
 }
 
 .toggle-container {
+  width: 70%;
+  margin: .5rem;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.toggles {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.reports-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+
+.reports-list-card {
+  margin: 1rem;
+  padding: 1rem;
+  width: 30%
+}
+
+
+.glass {
+  border-radius: 5px;
+  border-top: 1px solid rgba(217, 217, 217, 0.3);
+  border-left: 1px solid rgba(139, 139, 139, 0.30);
+  background-color: rgba(42, 42, 42, 0.5);
+  box-shadow: 2px 2px 2px #131313;
+  backdrop-filter: blur(3px);
+}
+
+
+.table-header {
+  box-shadow: 1px 1px 4px #ececec;
+}
+
+.toggle-header {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.bulk-selectors-container {
+  text-align: right;
+}
+
+.bulk-select {
+  font-size: .8rem;
+  font-weight: 100;
+  cursor: pointer;
+}
+.selector-divider {
+  line-height: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 1;
+  vertical-align: bottom;
+}
+
+.filter-header {
   width: 70%;
   margin: .5rem;
-  border: 1px solid white;
   border-radius: 10px;
   padding: 1rem;
+}
+
+
+.loading-container {
+  border: 1px solid red
+}
+
+
+.loading-image-container {
+  border: 1px solid blue
+}
+
+.empty-details {
+  text-align: center;
+  font-size: .8rem;
+  font-weight: 100;
+}
+
+.details-cell {
+  font-size: .9rem;
+  text-align: left;
 }
 
 /* "https://media1.giphy.com/media/l5JbspfwZ0yjHjlJ0K/giphy.gif" */

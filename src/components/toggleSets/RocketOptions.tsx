@@ -1,26 +1,26 @@
 import { useStore } from "../../ContextStore"
 import BulkSelector from "./BulkSelector"
 
-export default function LinksOptions() {
+export default function RocketOptions() {
 
-  const { linkToggles, setLinkToggles, unSnakeToTitle } = useStore()
+  const { rocketToggles, setRocketToggles, unSnakeToTitle } = useStore()
 
   return (
     <>
     <div className='toggle-container glass'>
-      <BulkSelector toggleSet="links"/>
-      <p className="toggle-header">Links</p>
+      <BulkSelector toggleSet="rocket"/>
+      <p className="toggle-header">Rocket Information Options</p>
       <hr/>
       <div className="toggles">
-        {Object.keys(linkToggles).map(key => (
+        {Object.keys(rocketToggles).map(key => (
           <span key={key}>
             <input
               type="checkbox"
               id={key}
               name={key}
-              checked={!!linkToggles[key]}
-              value={linkToggles[key]}
-              onChange={()=> setLinkToggles({...linkToggles, [key]: !linkToggles[key]})}/>
+              checked={!!rocketToggles[key]}
+              value={rocketToggles[key]}
+              onChange={()=> setRocketToggles({...rocketToggles, [key]: !rocketToggles[key]})}/>
             <label htmlFor={key}>
               {unSnakeToTitle(key)}
             </label>

@@ -7,7 +7,7 @@ export default function NavBar() {
 
   return (
     <nav>
-      <ul>
+      <ul className='nav-bar'>
         <li className='nav-item' onClick={()=>setSelectedNav('options')}>
           <NavLink
             className={selectedNav === 'options' ? 'current-page' : 'nav-link'}

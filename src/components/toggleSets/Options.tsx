@@ -2,7 +2,8 @@ import { useStore } from '../../ContextStore.tsx';
 import { useNavigate } from 'react-router-dom';
 import LaunchOptions from './LaunchOptions.tsx';
 import LinksOptions from './LinksOptions.tsx';
-import LaunchSiteOptions from './LaunchSiteOptions.tsx';
+import RocketOptions from './RocketOptions.tsx';
+import BulkSelector from './BulkSelector.tsx';
 
 export default function Options() {
 
@@ -17,13 +18,14 @@ export default function Options() {
 
   return (
     <>
-      <h2>SpaceX Launces</h2>
-      <button onClick={()=>goToSpaceXData()}>View Data</button>
       <div className='selections-container'>
+        <div className='glass filter-header'>
+          <BulkSelector toggleSet="all"/>
+          <button onClick={()=>goToSpaceXData()}>View Data</button>
+        </div>
         <LaunchOptions/>
-        {launchToggles.launch_site &&<LaunchSiteOptions/>}
-        {launchToggles.links &&<LinksOptions/>}
-
+        {launchToggles.links && <LinksOptions/>}
+        {launchToggles.rocket && <RocketOptions/>}
       </div>
     </>
   )
