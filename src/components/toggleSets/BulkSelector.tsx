@@ -1,6 +1,6 @@
 import { useStore } from "../../ContextStore"
 
-export default function BulkSelector({toggleSet}) {
+export default function BulkSelector({toggleSet}: {toggleSet: string}) {
 
   const { bulkSelect } = useStore()
   if (!bulkSelect) throw new Error('function cannot be undefined')

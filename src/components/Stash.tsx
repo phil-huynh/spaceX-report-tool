@@ -25,7 +25,7 @@ export default function Stash ({stash, stashSetter, finalStash=false}) {
           </tr>
         </thead>
         <tbody>
-          {stash.map((launch: Launch) =>
+          {stash?.map((launch: Launch) =>
             <tr onClick={()=>grabFromStash(launch)} style={{cursor: "pointer"}} className="stash-row">
               <td className="glass">{launch.mission_name ? launch.mission_name : 'no mission name available' }</td>
               <td className="glass">{launch.launch_date_local ? new Date(launch.launch_date_local).toLocaleDateString() : 'no date available' }</td>

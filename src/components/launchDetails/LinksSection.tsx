@@ -1,4 +1,6 @@
-const LinksSection = ({launch}) => (
+import { Launch } from "../../../utils/types";
+
+const LinksSection = ({launch}: {launch: Launch}) => (
   <div className="links-container glass details-section">
     {launch.links?.article_link &&
       <>

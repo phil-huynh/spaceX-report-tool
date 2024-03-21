@@ -1,4 +1,6 @@
-const BasicDetails = ({launch}) => (
+import { Launch } from "../../../utils/types";
+
+const BasicDetails = ({launch}: {launch: Launch}) => (
   <div className="basic-details">
     <table>
       <tbody>
