@@ -21,6 +21,7 @@ export type Report = {
   title: string;
   author: string;
   report: string;
+  stash: Launch[];
 }
 
 
@@ -77,6 +78,7 @@ export type ContextStoreType = {
   launchToggles: LaunchToggleSet;
   linkToggles: LinkToggleSet;
   reports: Report[];
+  finalReportStash: Launch[];
   rocketToggles: RocketToggleSet;
   selectedNav: string;
   startIndex: number;
@@ -84,18 +86,21 @@ export type ContextStoreType = {
   endIndex: number;
   interval: number;
   selectedLaunch: Launch;
+  selectedStashItem: Launch;
   bulkSelect: (toggleSet: string, type: string) => void;
   goToNextPage: () => void;
   goToPreviousPage: () => void;
   goToFirstPage: () => void;
   goToLastPage: () => void;
   handleIntervalChange: (e: Event) => void;
+  setFinalReportStash: Dispatch<SetStateAction<Launch[]>>
   setLaunchToggles: Dispatch<SetStateAction<LaunchToggleSet>>;
   setLinkToggles: Dispatch<SetStateAction<LinkToggleSet>>;
   setReports: Dispatch<SetStateAction<Report[]>>;
   setSelectedLaunch: Dispatch<SetStateAction<Launch>>;
   setRocketToggles: Dispatch<SetStateAction<RocketToggleSet>>;
   setSelectedNav: Dispatch<SetStateAction<string>>;
+  setSelectedStashItem: Dispatch<SetStateAction<Launch>>;
   setStash: Dispatch<SetStateAction<Launch[]>>
   unSnakeToTitle: (snakeCase: string) => string;
   updateLaunchToggles: (key: string) => void;

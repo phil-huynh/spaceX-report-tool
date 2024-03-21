@@ -36,6 +36,8 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
   const [interval, setInterval] = useState<number>(20)
   const [selectedLaunch, setSelectedLaunch] = useState<Launch>({})
   const [stash, setStash] = useState<Launch[]>([])
+  const [selectedStashItem, setSelectedStashItem] = useState<Launch>({})
+  const [finalReportStash, setFinalReportStash] = useState<Launch[]>([])
 
 
   const [launchToggles, setLaunchToggles] = useState<LaunchToggleSet> ({
@@ -188,12 +190,14 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
     launchToggles: launchToggles,
     linkToggles: linkToggles,
     reports: reports,
+    finalReportStash: finalReportStash,
     rocketToggles: rocketToggles,
     selectedNav: selectedNav,
     startIndex: startIndex,
     endIndex: endIndex,
     interval: interval,
     selectedLaunch: selectedLaunch,
+    selectedStashItem: selectedStashItem,
     stash: stash,
     bulkSelect: bulkSelect,
     goToNextPage: goToNextPage,
@@ -201,12 +205,14 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
     goToFirstPage: goToFirstPage,
     goToLastPage: goToLastPage,
     handleIntervalChange: handleIntervalChange,
+    setFinalReportStash: setFinalReportStash,
     setLaunchToggles: setLaunchToggles,
     setLinkToggles: setLinkToggles,
     setReports: setReports,
     setRocketToggles: setRocketToggles,
     setSelectedLaunch: setSelectedLaunch,
     setSelectedNav: setSelectedNav,
+    setSelectedStashItem: setSelectedStashItem,
     setStash: setStash,
     unSnakeToTitle: unSnakeToTitle,
     updateLaunchToggles: updateLaunchToggles,

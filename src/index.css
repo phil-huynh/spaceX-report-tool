@@ -149,16 +149,13 @@ input {
 }
 
 .form-container {
-  width: 100%;
+  width: 40%;
   display: flex;
   justify-content: center;
 }
 
 .report-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 40%;
+  border-radius: 10px;
   padding: 1.5rem;
 }
 
@@ -409,7 +406,7 @@ textarea {
 
 .button-cell {
   display: flex;
-  justify-content: center;
+  : center;
 }
 
 .stash-add,
@@ -434,5 +431,27 @@ textarea {
   place-items: center;
 }
 
+
+
+.report-workspace {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stash-viewer {
+  width: 60%;
+}
+.stash-viewer-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.details-summary-new-report-container{
+  width: 100%;
+}
+
+.details-summary-new-report {
+  width: 96%;
+}
 
 /* "https://media1.giphy.com/media/l5JbspfwZ0yjHjlJ0K/giphy.gif" */
