@@ -24,54 +24,49 @@ export type Report = {
 }
 
 
-export interface LaunchToggleSet {
-  launch_date_local?: boolean;
-  mission_name?: boolean;
-  details?: boolean;
-  static_fire_date_utc?: boolean;
-  rocket?: boolean;
-  links?: boolean;
+export type LaunchToggleSet = {
+  launch_date_local: boolean;
+  mission_name: boolean;
+  details: boolean;
+  static_fire_date_utc: boolean;
+  rocket: boolean;
+  links: boolean;
 }
 
-export interface LinkToggleSet {
-  article_link?: boolean;
-  flickr_images?: boolean;
-  presskit?: boolean;
-  reddit_campaign?: boolean;
-  reddit_launch?: boolean;
-  reddit_media?: boolean;
-  reddit_recovery?: boolean;
-  video_link?: boolean;
-  wikipedia?: boolean;
+export type LinkToggleSet = {
+  article_link: boolean;
+  flickr_images: boolean;
+  presskit: boolean;
+  reddit_campaign: boolean;
+  reddit_launch: boolean;
+  reddit_media: boolean;
+  reddit_recovery: boolean;
+  video_link: boolean;
+  wikipedia: boolean;
 }
 
-export interface RocketToggleSet {
-  active?: boolean;
-  boosters?: boolean;
-  company?: boolean;
-  cost_per_launch?: boolean;
-  country?: boolean;
-  description?: boolean;
-  diameter?: boolean;
-  engines?: boolean;
-  first_flight?: boolean;
-  first_stage?: boolean;
-  height?: boolean;
-  landing_legs?: boolean;
-  mass?: boolean;
-  name?: boolean;
-  payload_weights?: boolean;
-  second_stage?: boolean;
-  stages?: boolean;
-  type?: boolean;
-  wikipedia?: boolean;
-  success_rate_pct?: boolean;
+export type RocketToggleSet = {
+  active: boolean;
+  boosters: boolean;
+  company: boolean;
+  cost_per_launch: boolean;
+  country: boolean;
+  description: boolean;
+  diameter: boolean;
+  engines: boolean;
+  first_flight: boolean;
+  first_stage: boolean;
+  height: boolean;
+  landing_legs: boolean;
+  mass: boolean;
+  name: boolean;
+  payload_weights: boolean;
+  second_stage: boolean;
+  stages: boolean;
+  type: boolean;
+  wikipedia: boolean;
+  success_rate_pct: boolean;
 }
-
-export interface AllToggles extends LaunchToggleSet, LinkToggleSet, RocketToggleSet{
-  a(): void
-}
-
 
 export type LaunchList = {
   current: Launch[];
