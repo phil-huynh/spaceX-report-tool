@@ -33,7 +33,7 @@ export default function NewReport() {
     <>
       <div style={{marginBottom: "1.5rem"}}>
         {stash.length > 0 ?
-          <Stash stash={stash} stashSetter={setStash}/>
+          <Stash stash={stash} stashSetter={setStash} finalStash={false}/>
           :
           <div className="details-section glass">Stash is empty</div>
         }
@@ -69,7 +69,7 @@ export default function NewReport() {
           <h2>Final Report Stash</h2>
         </div>
         {stash.length > 0 ?
-          <Stash stash={finalReportStash} stashSetter={setFinalReportStash} isNewReport={true} finalStash={true}/>
+          <Stash stash={finalReportStash} stashSetter={setFinalReportStash} finalStash={true}/>
           :
           <div className="details-section glass">Stash is empty</div>
         }

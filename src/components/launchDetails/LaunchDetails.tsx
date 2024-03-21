@@ -29,7 +29,7 @@ export default function LaunchDetails() {
           Add to Stash
         </button>
       </div>
-      <Stash stash={stash} stashSetter={setStash}/>
+      <Stash stash={stash} stashSetter={setStash} finalStash={false}/>
       <div className="details-top-container">
         <div className="details-container details-section">
           <BasicDetails launch={selectedLaunch}/>
