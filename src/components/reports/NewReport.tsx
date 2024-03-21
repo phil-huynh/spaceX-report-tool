@@ -9,19 +9,23 @@ import useRefreshRedirect from "../../hooks/useRefreshRedirect";
 
 export default function NewReport() {
   useRefreshRedirect()
-  const {stash, selectedStashItem, finalReportStash, setFinalReportStash, setStash} = useStore();
+  const {stash, selectedStashItem, finalReportStash, setFinalReportStash, setStash, setSelectedStashItem} = useStore();
 
   if (!stash) throw new Error('stash cannot be undefined')
   if (!selectedStashItem) throw new Error('selectedStashItem cannot be undefined')
   if (!finalReportStash) throw new Error('finalReportStash cannot be undefined')
-  if (!setFinalReportStash || !setStash) throw new Error('function cannot be undefined')
-
+  if (!setFinalReportStash || !setStash || !setSelectedStashItem) {
+    throw new Error('function cannot be undefined')
+  }
 
   const updateFinalStash: (launch: Launch) => void = (launch) => {
     finalReportStash
       .filter((stashItem: Launch) => stashItem.id === launch.id).length < 1 &&
         setFinalReportStash([...finalReportStash, launch])
     setStash([...stash?.filter((stashItem: Launch) => stashItem.id !== launch.id) || []])
+    if (stash?.filter((stashItem: Launch) => stashItem.id !== launch.id).length > 0) {
+      selectedStashItem.id === stash[0].id ? setSelectedStashItem(stash[1]) : setSelectedStashItem(stash[0])
+    }
   }
 
 
