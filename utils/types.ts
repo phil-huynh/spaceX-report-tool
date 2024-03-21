@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, ChangeEvent } from "react";
 
 export type Distance = {
   feet?: number;
@@ -93,7 +93,7 @@ export type ContextStoreType = {
   goToFirstPage: () => void;
   goToLastPage: () => void;
   gotToNewReport: () => void;
-  handleIntervalChange: (e: Event) => void;
+  handleIntervalChange: (e: ChangeEvent<HTMLSelectElement>) =>void;
   setFinalReportStash: Dispatch<SetStateAction<Launch[]>>
   setLaunchToggles: Dispatch<SetStateAction<LaunchToggleSet>>;
   setLinkToggles: Dispatch<SetStateAction<LinkToggleSet>>;

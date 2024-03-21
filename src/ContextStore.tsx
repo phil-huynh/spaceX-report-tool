@@ -5,7 +5,8 @@ import {
   createContext,
   Dispatch,
   SetStateAction,
-  ReactNode
+  ReactNode,
+  ChangeEvent
 } from 'react'
 
 import {
@@ -14,7 +15,6 @@ import {
   RocketToggleSet,
   Report,
   ContextStoreType,
-  LaunchList,
   Launch
 } from '../utils/types';
 
@@ -29,7 +29,7 @@ const ContextStore = createContext<Partial<ContextStoreType>>({});
 export default function ContextProvider ({ children }: ContextStoreProviderProps) {
 
 
-  const launchList = useRef<LaunchList>()
+  const launchList = useRef<[]>([])
   const [reports, setReports] = useLocalStorage ('reports', '')
   const [selectedNav, setSelectedNav] = useState<string> ('options')
   const [startIndex, setStartIndex] = useState<number>(0)
@@ -39,7 +39,7 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
   const [stash, setStash] = useState<Launch[]>([])
   const [selectedStashItem, setSelectedStashItem] = useState<Launch>({})
   const [finalReportStash, setFinalReportStash] = useState<Launch[]>([])
-  const [selectedReport, setSelectedReport] = useState<Report>({})
+  const [selectedReport, setSelectedReport] = useState<Report | object>({})
 
 
   const [launchToggles, setLaunchToggles] = useState<LaunchToggleSet> ({
@@ -143,8 +143,8 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
 
   // const [pageNumbers, setPageNumbers] = useState<number[]>([])
 
-  const handleIntervalChange = (e: Event): void => {
-    const target: string | null = e.target.value
+  const handleIntervalChange = (e: ChangeEvent<HTMLSelectElement> ): void => {
+    const target: string | null = e.currentTarget.value
     if(target) {
       const value = Number(target)
       setInterval(value)

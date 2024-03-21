@@ -1,7 +1,16 @@
 import { useStore } from "../ContextStore";
 import { Launch } from "../../utils/types";
+import { Dispatch, SetStateAction } from "react";
 
-export default function Stash ({stash, stashSetter, finalStash=false}) {
+export default function Stash ({
+  stash,
+  stashSetter,
+  finalStash=false
+}: {
+  stash: Launch[],
+  stashSetter: Dispatch<SetStateAction<Launch>>,
+  finalStash: boolean
+}) {
 
   const {setSelectedStashItem} = useStore();
 
@@ -35,7 +44,9 @@ export default function Stash ({stash, stashSetter, finalStash=false}) {
                 <div>
                   <button
                     className="stash-remove-button"
-                    onClick={()=> stashSetter([...stash?.filter((stashItem: Launch) => stashItem.id !== launch.id) || []])}
+                    onClick={()=> {
+                      const newStash = [...stash?.filter((stashItem: Launch) => stashItem.id !== launch.id) || []]
+                      stashSetter(newStash)}}
                   >
                     Remove
                   </button>
