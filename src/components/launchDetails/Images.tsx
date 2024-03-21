@@ -1,4 +1,4 @@
-import { Launch } from "../../utils/types"
+import { Launch } from "../../../utils/types"
 
 const Images = ({launch}) => (
   <>

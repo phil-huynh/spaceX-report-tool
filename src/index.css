@@ -194,7 +194,9 @@ input {
 .reports-list-card {
   margin: 1rem;
   padding: 1rem;
-  width: 30%
+  width: 30%;
+  cursor: pointer;
+  border: none;
 }
 
 
@@ -341,7 +343,7 @@ textarea {
   padding-inline: 1rem;
   border-radius: 10px;
   height: 2.5rem;
-
+  cursor: pointer;
 }
 
 .details-section {

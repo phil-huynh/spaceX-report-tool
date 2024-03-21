@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import SpaceXList from './components/SpaceXList.tsx';
-import NewReport from './components/NewReport.tsx';
-import ReportsList from './components/ReportsList.tsx';
-import ReportDetails from './components/ReportDetails.tsx';
+import NewReport from './components/reports/NewReport.tsx';
+import ReportsList from './components/reports/ReportsList.tsx';
+import ReportDetails from './components/reports/ReportDetails.tsx';
 import ContextProvider from './ContextStore.tsx'
 import ErrorPage from './components/utilityComponents/ErrorPage.tsx';
 import Options from './components/toggleSets/Options.tsx';
+import LaunchDetails from './components/launchDetails/LaunchDetails.tsx';
 import './index.css';
 import {
   createBrowserRouter,
@@ -18,7 +19,6 @@ import {
   InMemoryCache,
   ApolloProvider,
 } from '@apollo/client';
-import LaunchDetails from './components/LaunchDetails.tsx';
 
 
 const router = createBrowserRouter([

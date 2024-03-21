@@ -1,10 +1,11 @@
-import { useStore } from "../ContextStore";
+import { useStore } from "../../ContextStore";
 import LinksSection from "./LinksSection";
 import BasicDetails from "./BasicDetails";
 import { useNavigate } from "react-router-dom";
-import useRefreshRedirect from "../hooks/useRefreshRedirect";
-import Stash from "./Stash";
+import useRefreshRedirect from "../../hooks/useRefreshRedirect";
+import Stash from "../Stash";
 import Images from "./Images";
+import { Launch } from "../../../utils/types";
 
 export default function LaunchDetails() {
   useRefreshRedirect()
@@ -22,7 +23,7 @@ export default function LaunchDetails() {
         <button className="back-to-table" onClick={() => navigate('/launch-list')}>Back to Table</button>
         <button
           className="stash-add"
-          onClick={()=> stash.filter(launch => launch.id === selectedLaunch.id).length < 1 &&
+          onClick={()=> stash.filter((launch: Launch) => launch.id === selectedLaunch.id).length < 1 &&
             setStash([...stash, selectedLaunch])}
         >
           Add to Stash

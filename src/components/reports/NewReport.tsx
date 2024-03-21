@@ -1,11 +1,11 @@
 import ReportForm from "./ReportForm";
-import Stash from "./Stash";
-import { useStore } from "../ContextStore";
-import BasicDetails from "./BasicDetails";
-import LinksSection from "./LinksSection";
-import Images from "./Images";
-import { Launch } from "../../utils/types";
-import useRefreshRedirect from "../hooks/useRefreshRedirect";
+import Stash from "../Stash";
+import { useStore } from "../../ContextStore";
+import BasicDetails from "../launchDetails/BasicDetails";
+import LinksSection from "../launchDetails/LinksSection";
+import Images from "../launchDetails/Images";
+import { Launch } from "../../../utils/types";
+import useRefreshRedirect from "../../hooks/useRefreshRedirect";
 
 export default function NewReport() {
   useRefreshRedirect()
@@ -55,11 +55,11 @@ export default function NewReport() {
                 </div>
               </div>
               <LinksSection launch={selectedStashItem}/>
-              <Images launch={selectedStashItem}/>
             </>
           }
         </div>
       </div>
+      <Images launch={selectedStashItem}/>
       <div style={{marginBottom: "1.5rem"}}>
         <div className="glass" style={{paddingBottom: '.rem'}}>
           <h2>Final Report Stash</h2>

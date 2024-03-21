@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form"
-import { useStore } from "../ContextStore.tsx"
-import inputValidator from "../validation/inputValidator.ts"
-import { Report } from "../../utils/types.ts"
+import { useStore } from "../../ContextStore.tsx"
+import inputValidator from "../../validation/inputValidator.ts"
+import { Report } from "../../../utils/types.ts"
 
 
 export default function ReportForm() {
