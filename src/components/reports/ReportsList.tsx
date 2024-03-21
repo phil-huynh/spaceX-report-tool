@@ -26,7 +26,7 @@ export default function ReportsList() {
         <h2>Choose a report to view</h2>
       </div>
       <div className="reports-list-container">
-        {reports && typeof reports === 'object' && reports?.sort((a, b) => b.date - a.date).map((report: Report, i: number) => (
+        {reports && typeof reports === 'object' && reports?.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()).map((report: Report, i: number) => (
           <div
             key={`${report}${i}`}
             className="reports-list-card glass"
