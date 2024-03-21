@@ -18,6 +18,7 @@ import {
   Launch
 } from '../utils/types';
 
+import useLocalStorage from './hooks/useLocalStorage';
 
 type ContextStoreProviderProps = {
   children: ReactNode
@@ -29,7 +30,7 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
 
 
   const launchList = useRef<LaunchList>()
-  const [reports, setReports] = useState<Report[]> ([])
+  const [reports, setReports] = useLocalStorage ('reports', '')
   const [selectedNav, setSelectedNav] = useState<string> ('options')
   const [startIndex, setStartIndex] = useState<number>(0)
   const [endIndex, setEndIndex] = useState<number>(20)
