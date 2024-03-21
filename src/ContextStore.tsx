@@ -106,46 +106,70 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
       ).join(' ')
 
   )
-  const updateToggles = (
-    toggles: LaunchToggleSet | LinkToggleSet | RocketToggleSet,
-    type: string,
-    callback:
-      Dispatch<SetStateAction<LaunchToggleSet>> |
-      Dispatch<SetStateAction<LinkToggleSet>> |
-      Dispatch<SetStateAction<RocketToggleSet>>
-  ) => {
-    const cache: LaunchToggleSet | LinkToggleSet | RocketToggleSet = {...toggles}
+  // const updateToggles = (
+  //   toggles: LaunchToggleSet | LinkToggleSet | RocketToggleSet,
+  //   type: string,
+  //   callback:
+  //     Dispatch<SetStateAction<LaunchToggleSet>> |
+  //     Dispatch<SetStateAction<LinkToggleSet>> |
+  //     Dispatch<SetStateAction<RocketToggleSet>>
+  // ) => {
+  //   const cache: LaunchToggleSet | LinkToggleSet | RocketToggleSet = {...toggles}
+  //   for (const toggle in cache) {
+  //     cache[toggle] = type === 'clear' ? false : true
+  //   }
+  //   callback(cache)
+  // }
+
+
+  const bulkLaunchToggles:(type: string) => void = (type) => {
+    const cache: LaunchToggleSet = {...launchToggles}
     for (const toggle in cache) {
-      cache[toggle] = type === 'clear' ? false : true
+      cache[toggle as keyof LaunchToggleSet] = type === 'clear' ? false : true
     }
-    callback(cache)
+    setLaunchToggles(cache)
+  }
+
+  const bulkLinkToggles:(type: string) => void = (type) => {
+    const cache: LinkToggleSet = {...linkToggles}
+    for (const toggle in cache) {
+      cache[toggle as keyof LinkToggleSet] = type === 'clear' ? false : true
+    }
+    setLinkToggles(cache)
+  }
+  const bulkRocketToggles:(type: string) => void = (type) => {
+    const cache: RocketToggleSet = {...rocketToggles}
+    for (const toggle in cache) {
+      cache[toggle as keyof RocketToggleSet] = type === 'clear' ? false : true
+    }
+    setRocketToggles(cache)
   }
 
   const bulkSelect: (toggleSet: string, type: string) => void = (toggleSet, type) => {
     if (toggleSet === 'all') {
-      updateToggles(launchToggles, type, setLaunchToggles)
-      updateToggles(linkToggles, type, setLinkToggles)
-      updateToggles(rocketToggles, type, setRocketToggles)
+      bulkLaunchToggles(type)
+      bulkLinkToggles(type)
+      bulkRocketToggles(type)
     }
     if (toggleSet === 'launch') {
-      updateToggles(launchToggles, type, setLaunchToggles)
+      bulkLaunchToggles(type)
       if (type==='clear') {
-        updateToggles(linkToggles, type, setLinkToggles)
-        updateToggles(rocketToggles, type, setRocketToggles)
+        bulkLinkToggles(type)
+        bulkRocketToggles(type)
       }
     }
     if (toggleSet === 'links') {
-      updateToggles(linkToggles, type, setLinkToggles)
+      bulkLinkToggles(type)
     }
     if (toggleSet === 'rocket') {
-      updateToggles(rocketToggles, type, setRocketToggles)
+      bulkRocketToggles(type)
     }
   }
 
-  const updateLaunchToggles: (key: string) => void = (key) => {
+  const handleLaunchToggles: (key: string) => void = (key) => {
     setLaunchToggles({...launchToggles, [key]: !launchToggles[key as keyof LaunchToggleSet]})
     if (!launchToggles.links) {
-      updateToggles(linkToggles, 'clear', setLinkToggles)
+      bulkLinkToggles('clear')
     }
   }
 
@@ -234,7 +258,7 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
     setSelectedStashItem: setSelectedStashItem,
     setStash: setStash,
     unSnakeToTitle: unSnakeToTitle,
-    updateLaunchToggles: updateLaunchToggles,
+    handleLaunchToggles: handleLaunchToggles,
     updateReports: updateReports,
   }
 

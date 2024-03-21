@@ -105,7 +105,7 @@ export type ContextStoreType = {
   setSelectedStashItem: Dispatch<SetStateAction<Launch>>;
   setStash: Dispatch<SetStateAction<Launch[]>>
   unSnakeToTitle: (snakeCase: string) => string;
-  updateLaunchToggles: (key: string) => void;
+  handleLaunchToggles: (key: string) => void;
   updateReports: (report: Report) => void;
 }
 

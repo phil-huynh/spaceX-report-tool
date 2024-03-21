@@ -4,14 +4,12 @@ import { LaunchToggleSet } from "../../../utils/types"
 
 export default function LaunchOptions() {
 
-  const{ launchToggles, updateLaunchToggles, unSnakeToTitle } = useStore()
+  const{ launchToggles, handleLaunchToggles, unSnakeToTitle } = useStore()
 
-  if (!updateLaunchToggles || !unSnakeToTitle) {
+  if (!handleLaunchToggles || !unSnakeToTitle) {
     throw new Error('function cannot be undefined')
   }
-  if (!updateLaunchToggles || !unSnakeToTitle) {
-    throw new Error('function cannot be undefined')
-  }
+
 
   return (
     <>
@@ -28,7 +26,7 @@ export default function LaunchOptions() {
                   id={key}
                   name={key}
                   checked={!!launchToggles[key as keyof LaunchToggleSet]}
-                  onChange={()=> updateLaunchToggles(key)}/>
+                  onChange={()=> handleLaunchToggles(key)}/>
                 <label htmlFor={key}>
                   {unSnakeToTitle(key)}
                 </label>
