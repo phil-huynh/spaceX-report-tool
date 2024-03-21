@@ -8,7 +8,7 @@ export default function Stash ({
   finalStash=false
 }: {
   stash: Launch[],
-  stashSetter: Dispatch<SetStateAction<Launch>>,
+  stashSetter: Dispatch<SetStateAction<Launch[]>>,
   finalStash: boolean
 }) {
 
