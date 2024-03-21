@@ -4,8 +4,15 @@ import { Report } from "../../../utils/types.ts"
 
 export default function ReportsList() {
 
-  const { reports } = useStore()
+  const { reports, setSelectedReport } = useStore()
   const navigate = useNavigate()
+
+  if (!setSelectedReport) throw new Error('function cannot be undefined')
+
+  const readReport: (report: Report) => void = (report) => {
+    setSelectedReport(report)
+    navigate('/report-details')
+  }
 
   return (
     <>
@@ -15,12 +22,12 @@ export default function ReportsList() {
           <div
             key={`${report}${i}`}
             className="reports-list-card glass"
-            onClick={()=>navigate('/report-details')}
+            onClick={()=>readReport(report)}
           >
             <h2 style={{lineHeight: "1rem"}}>{report.title}</h2>
             <h4 style={{lineHeight: "1rem"}}>{report.author}</h4>
             <p>
-              {`${report.date.toLocaleDateString()} at ${report.date.toLocaleTimeString()} ${typeof report.date} ${report.title}`}
+              {`${report.date.toLocaleDateString()} at ${report.date.toLocaleTimeString()}`}
             </p>
           </div>
         ))}

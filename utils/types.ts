@@ -86,17 +86,20 @@ export type ContextStoreType = {
   endIndex: number;
   interval: number;
   selectedLaunch: Launch;
+  selectedReport: Report;
   selectedStashItem: Launch;
   bulkSelect: (toggleSet: string, type: string) => void;
   goToNextPage: () => void;
   goToPreviousPage: () => void;
   goToFirstPage: () => void;
   goToLastPage: () => void;
+  gotToNewReport: () => void;
   handleIntervalChange: (e: Event) => void;
   setFinalReportStash: Dispatch<SetStateAction<Launch[]>>
   setLaunchToggles: Dispatch<SetStateAction<LaunchToggleSet>>;
   setLinkToggles: Dispatch<SetStateAction<LinkToggleSet>>;
   setReports: Dispatch<SetStateAction<Report[]>>;
+  setSelectedReport: Dispatch<SetStateAction<Report>>;
   setSelectedLaunch: Dispatch<SetStateAction<Launch>>;
   setRocketToggles: Dispatch<SetStateAction<RocketToggleSet>>;
   setSelectedNav: Dispatch<SetStateAction<string>>;

@@ -38,6 +38,7 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
   const [stash, setStash] = useState<Launch[]>([])
   const [selectedStashItem, setSelectedStashItem] = useState<Launch>({})
   const [finalReportStash, setFinalReportStash] = useState<Launch[]>([])
+  const [selectedReport, setSelectedReport] = useState<Report>({})
 
 
   const [launchToggles, setLaunchToggles] = useState<LaunchToggleSet> ({
@@ -181,7 +182,12 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
     }
   }
 
-
+  const goToNewReport: ()=> void = () => {
+    if (stash.length > 0 && Object.keys(selectedStashItem).length === 0) {
+      setSelectedStashItem(stash[0])
+    }
+    setSelectedNav('newReport')
+  }
 
 
 
@@ -197,6 +203,7 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
     endIndex: endIndex,
     interval: interval,
     selectedLaunch: selectedLaunch,
+    selectedReport: selectedReport,
     selectedStashItem: selectedStashItem,
     stash: stash,
     bulkSelect: bulkSelect,
@@ -204,6 +211,7 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
     goToPreviousPage: goToPreviousPage,
     goToFirstPage: goToFirstPage,
     goToLastPage: goToLastPage,
+    gotToNewReport: goToNewReport,
     handleIntervalChange: handleIntervalChange,
     setFinalReportStash: setFinalReportStash,
     setLaunchToggles: setLaunchToggles,
@@ -212,6 +220,7 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
     setRocketToggles: setRocketToggles,
     setSelectedLaunch: setSelectedLaunch,
     setSelectedNav: setSelectedNav,
+    setSelectedReport: setSelectedReport,
     setSelectedStashItem: setSelectedStashItem,
     setStash: setStash,
     unSnakeToTitle: unSnakeToTitle,

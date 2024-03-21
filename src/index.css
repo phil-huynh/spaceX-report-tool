@@ -310,9 +310,7 @@ input {
   cursor: pointer;
 }
 
-.launch-row:hover {
-  background-color: rgba(7, 132, 242, 0.4);
-}
+
 
 .form-input {
   width: 20rem;
@@ -381,13 +379,6 @@ textarea {
   width: 56%;
 }
 
-.details-details {
-}
-
-
-.basic-details {
-
-}
 
 .links-container {
   overflow: scroll;
@@ -408,7 +399,7 @@ textarea {
 
 .button-cell {
   display: flex;
-  : center;
+  justify-content: center;
 }
 
 .stash-add,
@@ -454,6 +445,26 @@ textarea {
 
 .details-summary-new-report {
   width: 96%;
+}
+
+.report-header {
+  padding-bottom: 1rem;
+  padding-inline: 1rem;
+}
+
+.report-body {
+  min-height: 10rem;
+  padding: 1rem;
+}
+
+.stash-row {
+  cursor: pointer;
+}
+
+.stash-row:hover,
+.launch-row:hover,
+.reports-list-card:hover{
+  background-color: rgba(7, 132, 242, 0.4);
 }
 
 /* "https://media1.giphy.com/media/l5JbspfwZ0yjHjlJ0K/giphy.gif" */

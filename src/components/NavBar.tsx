@@ -3,9 +3,9 @@ import { useStore } from '../ContextStore.tsx';
 
 export default function NavBar() {
 
-  const { selectedNav, setSelectedNav } = useStore()
+  const { selectedNav, setSelectedNav, gotToNewReport } = useStore()
 
-  if(!setSelectedNav) throw new Error('function cannot be undefined')
+  if(!setSelectedNav || !gotToNewReport) throw new Error('function cannot be undefined')
 
   return (
     <nav>
@@ -26,7 +26,7 @@ export default function NavBar() {
               SpaceX Data
             </NavLink>
         </li>
-        <li className='nav-item' onClick={()=>setSelectedNav('newReport')}>
+        <li className='nav-item' onClick={()=>gotToNewReport()}>
           <NavLink
             className={selectedNav === 'newReport' ? 'current-page' : 'nav-link'}
             to="/new-report"
