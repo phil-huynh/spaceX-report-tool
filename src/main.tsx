@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
-import SpaceXInfo from './components/SpaceXInfo.tsx';
+import SpaceXList from './components/SpaceXList.tsx';
 import NewReport from './components/NewReport.tsx';
 import ReportsList from './components/ReportsList.tsx';
 import ReportDetails from './components/ReportDetails.tsx';
@@ -18,6 +18,7 @@ import {
   InMemoryCache,
   ApolloProvider,
 } from '@apollo/client';
+import LaunchDetails from './components/LaunchDetails.tsx';
 
 
 const router = createBrowserRouter([
@@ -31,8 +32,12 @@ const router = createBrowserRouter([
         element: <Options/>
       },
       {
-        path: '/launch-data',
-        element: <SpaceXInfo/>
+        path: '/launch-list',
+        element: <SpaceXList/>
+      },
+      {
+        path: '/launch-details',
+        element: <LaunchDetails/>
       },
       {
         path: 'new-report',

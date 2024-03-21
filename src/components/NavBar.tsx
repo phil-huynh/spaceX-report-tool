@@ -18,10 +18,10 @@ export default function NavBar() {
               Options
             </NavLink>
         </li>
-        <li className='nav-item' onClick={()=>setSelectedNav('spaceX')}>
+        <li className='nav-item' onClick={()=>setSelectedNav('spaceXList')}>
           <NavLink
-            className={selectedNav === 'spaceX' ? 'current-page' : 'nav-link'}
-            to="/launch-data"
+            className={selectedNav === 'spaceXList' ? 'current-page' : 'nav-link'}
+            to="/launch-list"
             >
               SpaceX Data
             </NavLink>

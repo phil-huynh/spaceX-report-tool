@@ -6,7 +6,7 @@ export default function Loading() {
         alt="Loading..."
         width="750"
         height="750"
-        style={{borderRadius: "50%", border: 'red 1x solid'}}
+        style={{borderRadius: "50%",  opacity:".7"}}
         />
         <h2>Loading . . .</h2>
     </>

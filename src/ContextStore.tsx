@@ -14,7 +14,8 @@ import {
   RocketToggleSet,
   Report,
   ContextStoreType,
-  LaunchList
+  LaunchList,
+  Launch
 } from '../utils/types';
 
 
@@ -26,12 +27,15 @@ const ContextStore = createContext<Partial<ContextStoreType>>({});
 
 export default function ContextProvider ({ children }: ContextStoreProviderProps) {
 
+
   const launchList = useRef<LaunchList>()
   const [reports, setReports] = useState<Report[]> ([])
   const [selectedNav, setSelectedNav] = useState<string> ('options')
   const [startIndex, setStartIndex] = useState<number>(0)
   const [endIndex, setEndIndex] = useState<number>(20)
   const [interval, setInterval] = useState<number>(20)
+  const [selectedLaunch, setSelectedLaunch] = useState<Launch>({})
+  const [stash, setStash] = useState<Launch[]>([])
 
 
   const [launchToggles, setLaunchToggles] = useState<LaunchToggleSet> ({
@@ -79,11 +83,11 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
   })
 
 
-  const updateReports = (report: Report) => {
+  const updateReports: (report: Report) => void = (report: Report) => {
     setReports([...reports, report])
   }
 
-  const unSnakeToTitle = (snakeCase: string) => (
+  const unSnakeToTitle: (snakeCase: string) => string = (snakeCase: string) => (
     snakeCase.split('_')
       .map((word: string) => (
         `${word[0].toUpperCase()}${word.slice(1)}`)
@@ -105,7 +109,7 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
     callback(cache)
   }
 
-  const bulkSelect = (toggleSet: string, type="") => {
+  const bulkSelect: (toggleSet: string, type: string) => void = (toggleSet, type) => {
     if (toggleSet === 'all') {
       updateToggles(launchToggles, type, setLaunchToggles)
       updateToggles(linkToggles, type, setLinkToggles)
@@ -126,14 +130,14 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
     }
   }
 
-  const updateLaunchToggles = (key: string) => {
+  const updateLaunchToggles: (key: string) => void = (key) => {
     setLaunchToggles({...launchToggles, [key]: !launchToggles[key]})
     if (!launchToggles.links) {
       updateToggles(linkToggles, 'clear', setLinkToggles)
     }
   }
 
-  const [pageNumbers, setPageNumbers] = useState<number[]>([])
+  // const [pageNumbers, setPageNumbers] = useState<number[]>([])
 
   const handleIntervalChange = (e: Event): void => {
     const target: string | null = e.target.value
@@ -146,7 +150,7 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
   }
 
 
-  const goToPreviousPage = () => {
+  const goToPreviousPage: () => void = () => {
     if (startIndex >= 20) {
       setStartIndex(startIndex - interval)
       setEndIndex(endIndex - interval)
@@ -157,23 +161,26 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
     }
   }
 
-  const goToNextPage = () => {
+  const goToNextPage: () => void = () => {
     if (launchList.current && endIndex < launchList.current.length)
       setStartIndex(startIndex + interval)
       setEndIndex(endIndex + interval)
   }
 
-  const goToFirstPage = () => {
+  const goToFirstPage: () => void = () => {
     setStartIndex(0)
     setEndIndex(interval)
   }
 
-  const goToLastPage = () => {
+  const goToLastPage: () => void = () => {
     if(launchList.current)  {
       setStartIndex(Math.floor(launchList.current.length/interval) * interval)
       setEndIndex(launchList.current.length)
     }
   }
+
+
+
 
 
   const store: ContextStoreType = {
@@ -186,6 +193,8 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
     startIndex: startIndex,
     endIndex: endIndex,
     interval: interval,
+    selectedLaunch: selectedLaunch,
+    stash: stash,
     bulkSelect: bulkSelect,
     goToNextPage: goToNextPage,
     goToPreviousPage: goToPreviousPage,
@@ -196,7 +205,9 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
     setLinkToggles: setLinkToggles,
     setReports: setReports,
     setRocketToggles: setRocketToggles,
+    setSelectedLaunch: setSelectedLaunch,
     setSelectedNav: setSelectedNav,
+    setStash: setStash,
     unSnakeToTitle: unSnakeToTitle,
     updateLaunchToggles: updateLaunchToggles,
     updateReports: updateReports,

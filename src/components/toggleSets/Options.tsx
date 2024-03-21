@@ -13,8 +13,8 @@ export default function Options() {
   if (!launchToggles) throw new Error('launchToggles cannot be undefined')
 
   const goToSpaceXData = () => {
-    navigate('/launch-data')
-    setSelectedNav('spaceX')
+    navigate('/launch-list')
+    setSelectedNav('spaceXList')
   }
 
   return (
@@ -22,7 +22,20 @@ export default function Options() {
       <div className='selections-container'>
         <div className='glass filter-header'>
           <BulkSelector toggleSet="all"/>
-          <button onClick={()=>goToSpaceXData()}>View Data</button>
+          <div className='filter-header-main'>
+            <span className='spacer'></span>
+            <div
+              className='fitler-header-title'
+            >
+              <p>SpaceX Launch Data Options</p>
+            </div>
+            <button
+              className="filter-button"
+              onClick={()=>goToSpaceXData()}
+            >
+              View Data
+            </button>
+          </div>
         </div>
         <LaunchOptions/>
         {launchToggles.links && <LinksOptions/>}

@@ -78,7 +78,7 @@ export default function useLaunchesQuery() {
     headers = Object.keys(data?.launchesPast[0])
       .slice(1)
       .filter(header => (
-        !['id', 'mission_id', 'links'].includes(header)
+        !['id', 'mission_id'].includes(header)
       ))
     if (headers.includes('rocket')) {
       headers.splice( headers.indexOf('rocket'), 1, 'rocket_name')
