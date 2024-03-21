@@ -16,7 +16,7 @@ export type Mass = {
 }
 
 export type Report = {
-  date: Date;
+  date: Date | null;
   title: string;
   author: string;
   report: string;

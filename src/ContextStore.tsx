@@ -20,6 +20,14 @@ import {
 
 import useLocalStorage from './hooks/useLocalStorage';
 
+const emptyReport = {
+  date: null,
+  title: '',
+  author: '',
+  report: '',
+  stash: []
+}
+
 type ContextStoreProviderProps = {
   children: ReactNode
 }
@@ -39,7 +47,7 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
   const [stash, setStash] = useState<Launch[]>([])
   const [selectedStashItem, setSelectedStashItem] = useState<Launch>({})
   const [finalReportStash, setFinalReportStash] = useState<Launch[]>([])
-  const [selectedReport, setSelectedReport] = useState<Report | object>({})
+  const [selectedReport, setSelectedReport] = useState<Report>(emptyReport)
 
 
   const [launchToggles, setLaunchToggles] = useState<LaunchToggleSet> ({
