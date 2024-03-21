@@ -21,7 +21,7 @@ import {
 import useLocalStorage from './hooks/useLocalStorage';
 
 const emptyReport = {
-  date: null,
+  date: '',
   title: '',
   author: '',
   report: '',
