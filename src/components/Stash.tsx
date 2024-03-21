@@ -1,7 +1,7 @@
 import { useStore } from "../ContextStore";
 import { Launch } from "../../utils/types";
 
-export default function Stash ({stash, stashSetter, isNewReport=false, finalStash=false}) {
+export default function Stash ({stash, stashSetter, finalStash=false}) {
 
   const {setSelectedStashItem} = useStore();
 

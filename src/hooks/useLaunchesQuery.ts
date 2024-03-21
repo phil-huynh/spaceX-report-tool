@@ -1,6 +1,7 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client';
 import { useStore } from '../ContextStore.tsx';
 import GET_LAUNCHES from '../queries/launchQuery.ts';
+import { LinkToggleSet, RocketToggleSet } from '../../utils/types.ts';
 
 export default function useLaunchesQuery() {
 
@@ -17,7 +18,7 @@ export default function useLaunchesQuery() {
     launchToggles.links &&
       Object.keys(linkToggles)
         .slice(1)
-        .filter((key: string) => linkToggles[key])
+        .filter((key: string) => linkToggles[key as keyof LinkToggleSet])
         .length > 0
   )
 
@@ -25,7 +26,7 @@ export default function useLaunchesQuery() {
     launchToggles.rocket &&
       Object.keys(rocketToggles)
         .slice(1)
-        .filter((key: string) => rocketToggles[key])
+        .filter((key: string) => rocketToggles[key as keyof RocketToggleSet])
         .length > 0
   )
 

@@ -1,5 +1,6 @@
 import { useStore } from "../../ContextStore"
 import BulkSelector from "./BulkSelector"
+import { RocketToggleSet } from "../../../utils/types"
 
 export default function RocketOptions() {
 
@@ -23,9 +24,8 @@ export default function RocketOptions() {
               type="checkbox"
               id={key}
               name={key}
-              checked={!!rocketToggles[key]}
-              value={rocketToggles[key]}
-              onChange={()=> setRocketToggles({...rocketToggles, [key]: !rocketToggles[key]})}/>
+              checked={!!rocketToggles[key as keyof RocketToggleSet]}
+              onChange={()=> setRocketToggles({...rocketToggles, [key]: !rocketToggles[key as keyof RocketToggleSet]})}/>
             <label htmlFor={key}>
               {unSnakeToTitle(key)}
             </label>

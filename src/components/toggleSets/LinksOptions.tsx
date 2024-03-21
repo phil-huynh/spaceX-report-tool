@@ -1,5 +1,6 @@
 import { useStore } from "../../ContextStore"
 import BulkSelector from "./BulkSelector"
+import { LinkToggleSet } from "../../../utils/types"
 
 export default function LinksOptions() {
 
@@ -23,9 +24,8 @@ export default function LinksOptions() {
                 type="checkbox"
                 id={key}
                 name={key}
-                checked={!!linkToggles[key]}
-                value={linkToggles[key]}
-                onChange={()=> setLinkToggles({...linkToggles, [key]: !linkToggles[key]})}/>
+                checked={!!linkToggles[key as keyof LinkToggleSet]}
+                onChange={()=> setLinkToggles({...linkToggles, [key]: !linkToggles[key as keyof LinkToggleSet]})}/>
               <label htmlFor={key}>
                 {unSnakeToTitle(key)}
               </label>

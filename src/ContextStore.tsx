@@ -106,7 +106,7 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
       Dispatch<SetStateAction<LinkToggleSet>> |
       Dispatch<SetStateAction<RocketToggleSet>>
   ) => {
-    const cache: LaunchToggleSet | LinkToggleSet | RocketToggleSet= {...toggles}
+    const cache: LaunchToggleSet | LinkToggleSet | RocketToggleSet = {...toggles}
     for (const toggle in cache) {
       cache[toggle] = type === 'clear' ? false : true
     }
@@ -135,7 +135,7 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
   }
 
   const updateLaunchToggles: (key: string) => void = (key) => {
-    setLaunchToggles({...launchToggles, [key]: !launchToggles[key]})
+    setLaunchToggles({...launchToggles, [key]: !launchToggles[key as keyof LaunchToggleSet]})
     if (!launchToggles.links) {
       updateToggles(linkToggles, 'clear', setLinkToggles)
     }
@@ -166,7 +166,8 @@ export default function ContextProvider ({ children }: ContextStoreProviderProps
   }
 
   const goToNextPage: () => void = () => {
-    if (launchList.current && endIndex < launchList.current.length)
+    const launch = launchList.current
+    if (launch && endIndex < launch.length)
       setStartIndex(startIndex + interval)
       setEndIndex(endIndex + interval)
   }

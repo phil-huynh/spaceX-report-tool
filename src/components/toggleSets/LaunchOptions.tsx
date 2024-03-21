@@ -1,5 +1,6 @@
 import { useStore } from "../../ContextStore"
 import BulkSelector from "./BulkSelector"
+import { LaunchToggleSet } from "../../../utils/types"
 
 export default function LaunchOptions() {
 
@@ -26,8 +27,7 @@ export default function LaunchOptions() {
                   type="checkbox"
                   id={key}
                   name={key}
-                  checked={!!launchToggles[key]}
-                  value={launchToggles[key]}
+                  checked={!!launchToggles[key as keyof LaunchToggleSet]}
                   onChange={()=> updateLaunchToggles(key)}/>
                 <label htmlFor={key}>
                   {unSnakeToTitle(key)}

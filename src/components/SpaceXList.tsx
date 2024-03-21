@@ -4,7 +4,7 @@ import Loading from './utilityComponents/Loading.tsx';
 import useLaunchesQuery from '../hooks/useLaunchesQuery.ts';
 import useRefreshRedirect from '../hooks/useRefreshRedirect.ts';
 import { useNavigate } from 'react-router-dom';
-
+import { LinkToggleSet } from '../../utils/types.ts';
 
 export default function SpaceXList() {
   useRefreshRedirect()
@@ -85,7 +85,7 @@ export default function SpaceXList() {
                   .filter((link) => (
                     link !== 'flickr_images' &&
                     link !== 'video_link' &&
-                    linkToggles[link]
+                    linkToggles[link as keyof LinkToggleSet]
                   )).length > 1 &&
                 <th className='table-header glass'>Has Links</th>}
             </tr>
