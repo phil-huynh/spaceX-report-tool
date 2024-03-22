@@ -1,15 +1,15 @@
-import { useStore } from "../../ContextStore"
-import { Launch } from "../../../utils/types"
-import BasicDetails from "../launchDetails/BasicDetails"
-import LinksSection from "../launchDetails/LinksSection"
-import Images from "../launchDetails/Images"
-import useRefreshRedirect from "../../hooks/useRefreshRedirect"
+import { useStore } from "../../ContextStore";
+import { Launch } from "../../../utils/types";
+import BasicDetails from "../launchDetails/BasicDetails";
+import LinksSection from "../launchDetails/LinksSection";
+import Images from "../launchDetails/Images";
+import useRefreshRedirect from "../../hooks/useRefreshRedirect";
 
 export default function ReportDetails() {
-  useRefreshRedirect()
+  useRefreshRedirect();
 
-  const {selectedReport} = useStore()
-  if (!selectedReport) throw new Error('report cannot be undefined')
+  const {selectedReport} = useStore();
+  if (!selectedReport) throw new Error('report cannot be undefined');
 
   return (
     <>
@@ -42,6 +42,6 @@ export default function ReportDetails() {
         </div>
       ))}
     </>
-  )
+  );
 }
 

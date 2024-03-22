@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
 
 const GET_LAUNCHES = gql`
   query Launches (
@@ -155,4 +155,4 @@ const GET_LAUNCHES = gql`
     }
   }
 `;
-export default GET_LAUNCHES
+export default GET_LAUNCHES;

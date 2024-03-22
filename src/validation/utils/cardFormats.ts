@@ -11,118 +11,118 @@ const cardFormats: Record<string, (num: string) => boolean> = {
   'Visa Electron': (num: string): boolean => {
     if (num.length === 16) {
       if (['4026', '4508', '4844', '4913', '4917'].includes(num.slice(0, 4))) {
-        return true
+        return true;
       }
       if (num.slice(0, 6) === '417500') {
-        return true
+        return true;
       }
     }
-    return false
+    return false;
   },
 
   Mastercard: (num: string): boolean => {
     if (num.length === 16) {
       if (Number(num.slice(0, 4)) >= 2221 && Number(num.slice(0, 4)) <= 2720) {
-        return true
+        return true;
       }
       if (Number(num.slice(0, 2)) >= 51 && Number(num.slice(0, 2)) <= 55) {
-        return true
+        return true;
       }
     }
-    return false
+    return false;
   },
 
   Discover: (num: string): boolean => {
     if (num.length >= 16 && num.length <= 19) {
       if (num.slice(0, 4) === '6011' || num.slice(0, 2) === '65') {
-        return true
+        return true;
       }
       if (Number(num.slice(0, 3)) >= 644 && Number(num.slice(0, 3)) <= 649) {
-        return true
+        return true;
       }
       if (Number(num.slice(0, 6)) >= 622126 && Number(num.slice(0, 6)) <= 622925) {
-        return true
+        return true;
       }
     }
-    return false
+    return false;
   },
 
   Maestro: (num: string): boolean => {
     if (['5018', '5020', '5038', '5893', '6304', '6759', '6761', '6762', '6763'].includes(num.slice(0, 4))) {
       if (num.length >= 12 && num.length <= 19) {
-        return true
+        return true;
       }
     }
-    return false
+    return false;
   },
 
   MaestroUK: (num: string): boolean => {
     if (num.length >= 12 && num.length <= 19) {
       if (num.slice(0, 4) === '6759' || ['676770', '676774'].includes(num.slice(0, 6))) {
-        return true
+        return true;
       }
     }
-    return false
+    return false;
   },
 
   Verve: (num: string): boolean => {
     if ([16, 18, 19].includes(num.length)) {
-      const number: number = Number(num.slice(0, 6))
+      const number: number = Number(num.slice(0, 6));
       if ((number >= 506099 && number <= 506198) ||
         (number >= 507865 && number <= 507964) ||
         (number >= 650002 && number <= 650027)) {
-        return true
+        return true;
       }
     }
-    return false
+    return false;
   },
 
   'Japan Credit Bureau': (num: string): boolean => {
     if (num.length >= 16 && num.length <= 19) {
-      const number: number = Number(num.slice(0, 4))
+      const number: number = Number(num.slice(0, 4));
       if (number >= 3528 && number <= 3589) {
-        return true
+        return true;
       }
     }
-    return false
+    return false;
   },
 
   UrkCard: (num: string): boolean => {
     if (num.length >= 16 && num.length <= 19) {
-      const number: number = Number(num.slice(0, 8))
+      const number: number = Number(num.slice(0, 8));
       if (number >= 60400100 && number <= 60420099) {
-        return true
+        return true;
       }
     }
-    return false
+    return false;
   },
 
   RuPay: (num: string): boolean => {
     if (num.length === 16) {
       if (['60', '65', '81', '82'].includes(num.slice(0, 2)) ||
         ['353', '356', '508'].includes(num.slice(0, 3))) {
-        return true
+        return true;
       }
     }
-    return false
+    return false;
   },
 
   Mir: (num: string): boolean => {
     if ((num.length >= 16 && num.length <= 19)){
       if (['2200', '2201', '2202', '2203', '2204'].includes(num.slice(0, 4))) {
-        return true
+        return true;
       }
     }
-    return false
+    return false;
   },
 
   'Gerbang Pembayaran Nasional': (num: string): boolean => {
     if ([16, 18, 19].includes(num.length)) {
       if (['50', '56', '58', '60', '61', '62', '63'].includes(num.slice(0, 2))) {
-        return true
+        return true;
       }
     }
-    return false
+    return false;
   },
 
   Troy: (num: string): boolean => num.length === 16 && (num.slice(0, 2) === '65' || num.slice(0, 4) === '9792'),

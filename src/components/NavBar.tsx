@@ -3,9 +3,9 @@ import { useStore } from '../ContextStore.tsx';
 
 export default function NavBar() {
 
-  const { selectedNav, setSelectedNav, gotToNewReport } = useStore()
+  const { selectedNav, setSelectedNav, gotToNewReport } = useStore();
 
-  if(!setSelectedNav || !gotToNewReport) throw new Error('function cannot be undefined')
+  if(!setSelectedNav || !gotToNewReport) throw new Error('function cannot be undefined');
 
   return (
     <nav>
@@ -44,5 +44,5 @@ export default function NavBar() {
         </li>
       </ul>
     </nav>
-  )
+  );
 }

@@ -52,4 +52,4 @@ const LinksSection = ({launch}: {launch: Launch}) => (
     }
   </div>
 );
-export default LinksSection
+export default LinksSection;

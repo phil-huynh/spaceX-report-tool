@@ -1,13 +1,13 @@
-import { useStore } from "../../ContextStore"
-import BulkSelector from "./BulkSelector"
-import { LinkToggleSet } from "../../../utils/types"
+import { useStore } from "../../ContextStore";
+import { LinkToggleSet } from "../../../utils/types";
+import BulkSelector from "./BulkSelector";
 
 export default function LinksOptions() {
 
-  const { linkToggles, setLinkToggles, unSnakeToTitle } = useStore()
+  const { linkToggles, setLinkToggles, unSnakeToTitle } = useStore();
 
   if (!setLinkToggles || !unSnakeToTitle) {
-    throw new Error('function cannot be undefined')
+    throw new Error('function cannot be undefined');
   }
 
   return (
@@ -35,5 +35,5 @@ export default function LinksOptions() {
       </div>
     }
   </>
-  )
+  );
 }

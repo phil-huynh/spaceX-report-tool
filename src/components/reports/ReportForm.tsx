@@ -1,33 +1,33 @@
-import { useForm, SubmitHandler } from "react-hook-form"
-import { useStore } from "../../ContextStore.tsx"
-import inputValidator from "../../validation/inputValidator.ts"
-import { Report } from "../../../utils/types.ts"
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useStore } from "../../ContextStore.tsx";
+import inputValidator from "../../validation/inputValidator.ts";
+import { Report } from "../../../utils/types.ts";
 
 
 export default function ReportForm() {
 
-  const { updateReports, finalReportStash, setFinalReportStash } = useStore()
+  const { updateReports, finalReportStash, setFinalReportStash } = useStore();
 
-  if(!updateReports || !setFinalReportStash) throw new Error("function cannot be undefined")
-  if(!finalReportStash) throw new Error("finalReportStash cannot be undefined")
+  if(!updateReports || !setFinalReportStash) throw new Error("function cannot be undefined");
+  if(!finalReportStash) throw new Error("finalReportStash cannot be undefined");
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<Report>()
+  } = useForm<Report>();
 
   const onSubmit: SubmitHandler<Report> = (data) => {
     data = {
       ...data,
       date: new Date(Date.now()),
       stash: finalReportStash
-    }
-    updateReports(data)
-    setFinalReportStash([])
-    reset()
-  }
+    };
+    updateReports(data);
+    setFinalReportStash([]);
+    reset();
+  };
 
   return (
 
@@ -68,5 +68,5 @@ export default function ReportForm() {
         <input className="form-submit" type="submit"/>
       </form>
     </div>
-  )
+  );
 }

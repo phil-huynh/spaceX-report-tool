@@ -1,6 +1,6 @@
-import isCard from "./validators/isCreditCard.ts"
-import containsHTML from "./validators/containsHTML.ts"
-import containsSQL from "./validators/containsSQL.ts"
+import isCard from "./validators/isCreditCard.ts";
+import containsHTML from "./validators/containsHTML.ts";
+import containsSQL from "./validators/containsSQL.ts";
 
 
 const inputValidator = {
@@ -15,4 +15,4 @@ const inputValidator = {
   ),
 }
 
-export default inputValidator
+export default inputValidator;

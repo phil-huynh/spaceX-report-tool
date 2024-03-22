@@ -1,17 +1,17 @@
 import { useQuery } from '@apollo/client';
 import { useStore } from '../ContextStore.tsx';
-import GET_LAUNCHES from '../queries/launchQuery.ts';
 import { LinkToggleSet, RocketToggleSet } from '../../utils/types.ts';
+import GET_LAUNCHES from '../queries/launchQuery.ts';
 
 export default function useLaunchesQuery() {
 
-  const { launchToggles, linkToggles, rocketToggles, launchList } = useStore()
+  const { launchToggles, linkToggles, rocketToggles, launchList } = useStore();
 
   if (!launchToggles || !linkToggles || !rocketToggles) {
-    throw new Error('toggle set cannot be undefined')
+    throw new Error('toggle set cannot be undefined');
   }
   if (!launchList) {
-    throw new Error('launchList cannot be undefined')
+    throw new Error('launchList cannot be undefined');
   }
 
   const canGetLinks = (
@@ -20,7 +20,7 @@ export default function useLaunchesQuery() {
         .slice(1)
         .filter((key: string) => linkToggles[key as keyof LinkToggleSet])
         .length > 0
-  )
+  );
 
   const canGetRocketDetails = (
     launchToggles.rocket &&
@@ -28,7 +28,7 @@ export default function useLaunchesQuery() {
         .slice(1)
         .filter((key: string) => rocketToggles[key as keyof RocketToggleSet])
         .length > 0
-  )
+  );
 
   const { loading, error, data } = useQuery(GET_LAUNCHES, {
     variables: {
@@ -69,24 +69,23 @@ export default function useLaunchesQuery() {
       success_rate_pct: rocketToggles.success_rate_pct,
       details: launchToggles.details,
     }
-  })
+  });
 
-  let headers: string[] | null = null
+  let headers: string[] | null = null;
 
   if (data) {
-    console.log(data.launchesPast)
-    launchList.current = data.launchesPast.slice().reverse()
+    launchList.current = data.launchesPast.slice().reverse();
     headers = Object.keys(data?.launchesPast[0])
       .slice(1)
       .filter(header => (
         !['id', 'mission_id'].includes(header)
-      ))
+      ));
     if (headers.includes('rocket')) {
-      headers.splice( headers.indexOf('rocket'), 1, 'rocket_name')
+      headers.splice( headers.indexOf('rocket'), 1, 'rocket_name');
     }
   }
   if (!headers) {
-    headers = []
+    headers = [];
   }
-  return {loading, error, data, headers}
+  return {loading, error, data, headers};
 }

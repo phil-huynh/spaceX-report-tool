@@ -1,11 +1,11 @@
-import cardFormats from "./cardFormats.ts"
+import cardFormats from "./cardFormats.ts";
 
 export default function isValidCardFormat(num: string) {
-  const matches: string[] = []
+  const matches: string[] = [];
   for(const format in cardFormats) {
     if (cardFormats[format](num)) {
-      matches.push(format)
+      matches.push(format);
     }
   }
-  return matches.length > 0 ? [true, matches] : false
+  return matches.length > 0 ? [true, matches] : false;
 }

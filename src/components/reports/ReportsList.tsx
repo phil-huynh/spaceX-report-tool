@@ -1,21 +1,21 @@
-import { useStore } from "../../ContextStore.tsx"
-import { useNavigate } from "react-router-dom"
-import { Report } from "../../../utils/types.ts"
-import useRefreshRedirect from "../../hooks/useRefreshRedirect.ts"
+import { useNavigate } from "react-router-dom";
+import { useStore } from "../../ContextStore.tsx";
+import { Report } from "../../../utils/types.ts";
+import useRefreshRedirect from "../../hooks/useRefreshRedirect.ts";
 
 
 export default function ReportsList() {
-  useRefreshRedirect()
+  useRefreshRedirect();
 
-  const { reports, setSelectedReport, setReports } = useStore()
-  const navigate = useNavigate()
+  const { reports, setSelectedReport, setReports } = useStore();
+  const navigate = useNavigate();
 
-  if (!setSelectedReport || !setReports) throw new Error('function cannot be undefined')
+  if (!setSelectedReport || !setReports) throw new Error('function cannot be undefined');
 
   const readReport: (report: Report) => void = (report) => {
-    setSelectedReport(report)
-    navigate('/report-details')
-  }
+    setSelectedReport(report);
+    navigate('/report-details');
+  };
 
   return (
     <>
@@ -26,7 +26,9 @@ export default function ReportsList() {
         <h2>Choose a report to view</h2>
       </div>
       <div className="reports-list-container">
-        {reports && typeof reports === 'object' && reports?.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()).map((report: Report, i: number) => (
+        {reports && typeof reports === 'object' &&
+          reports?.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
+            .map((report: Report, i: number) => (
           <div
             key={`${report}${i}`}
             className="reports-list-card glass"
@@ -44,5 +46,5 @@ export default function ReportsList() {
         ))}
       </div>
     </>
-  )
+  );
 }

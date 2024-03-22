@@ -1,6 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
 import { useStore } from "../ContextStore";
 import { Launch } from "../../utils/types";
-import { Dispatch, SetStateAction } from "react";
 
 export default function Stash ({
   stash,
@@ -11,14 +11,13 @@ export default function Stash ({
   stashSetter: Dispatch<SetStateAction<Launch[]>>,
   finalStash: boolean
 }) {
-
   const {setSelectedStashItem} = useStore();
 
   if (!stashSetter || !setSelectedStashItem) throw new Error('function cannot be undefined');
 
   const grabFromStash = (stashItem: Launch) => {
       if (!finalStash) {
-        setSelectedStashItem(stashItem)
+        setSelectedStashItem(stashItem);
       }
   }
 
@@ -58,4 +57,4 @@ export default function Stash ({
       </table>
     </div>
   );
-};
+}

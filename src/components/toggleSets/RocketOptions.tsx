@@ -1,15 +1,13 @@
-import { useStore } from "../../ContextStore"
-import BulkSelector from "./BulkSelector"
-import { RocketToggleSet } from "../../../utils/types"
+import { useStore } from "../../ContextStore";
+import { RocketToggleSet } from "../../../utils/types";
+import BulkSelector from "./BulkSelector";
 
 export default function RocketOptions() {
 
-  const { rocketToggles, setRocketToggles, unSnakeToTitle } = useStore()
+  const { rocketToggles, setRocketToggles, unSnakeToTitle } = useStore();
 
-  if (!setRocketToggles || !unSnakeToTitle) {
-    throw new Error('function cannot be undefined')
-  }
-  if (!rocketToggles) throw new Error('rocketToggles cannot be undefined')
+  if (!setRocketToggles || !unSnakeToTitle) throw new Error('function cannot be undefined');
+  if (!rocketToggles) throw new Error('rocketToggles cannot be undefined');
 
   return (
     <>
@@ -34,5 +32,5 @@ export default function RocketOptions() {
       </div>
     </div>
   </>
-  )
+  );
 }

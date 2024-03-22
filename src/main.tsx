@@ -5,7 +5,7 @@ import SpaceXList from './components/SpaceXList.tsx';
 import NewReport from './components/reports/NewReport.tsx';
 import ReportsList from './components/reports/ReportsList.tsx';
 import ReportDetails from './components/reports/ReportDetails.tsx';
-import ContextProvider from './ContextStore.tsx'
+import ContextProvider from './ContextStore.tsx';
 import ErrorPage from './components/utilityComponents/ErrorPage.tsx';
 import Options from './components/toggleSets/Options.tsx';
 import LaunchDetails from './components/launchDetails/LaunchDetails.tsx';
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
       }
     ]
   }
-])
+]);
 
 const client = new ApolloClient({
   uri: 'https://spacex-production.up.railway.app/',
@@ -69,7 +69,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </ContextProvider>
     </ApolloProvider>
   </React.StrictMode>,
-)
-
-// https://github.com/SpaceXLand/api/blob/master/src/utils/filters/order.ts
-// https://github.com/SpaceXLand/api/blob/master/src/utils/filters/sort.ts
+);

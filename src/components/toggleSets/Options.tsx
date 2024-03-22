@@ -6,15 +6,15 @@ import RocketOptions from './RocketOptions.tsx';
 import BulkSelector from './BulkSelector.tsx';
 
 export default function Options() {
-  const { setSelectedNav , launchToggles } = useStore()
-  const navigate = useNavigate()
+  const { setSelectedNav , launchToggles } = useStore();
+  const navigate = useNavigate();
 
-  if (!setSelectedNav) throw new Error('function cannot be undefined')
-  if (!launchToggles) throw new Error('launchToggles cannot be undefined')
+  if (!setSelectedNav) throw new Error('function cannot be undefined');
+  if (!launchToggles) throw new Error('launchToggles cannot be undefined');
 
   const goToSpaceXData = () => {
-    navigate('/launch-list')
-    setSelectedNav('spaceXList')
+    navigate('/launch-list');
+    setSelectedNav('spaceXList');
   }
 
   return (
@@ -42,5 +42,5 @@ export default function Options() {
         {launchToggles.rocket && <RocketOptions/>}
       </div>
     </>
-  )
+  );
 }

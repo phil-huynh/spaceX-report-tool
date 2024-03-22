@@ -1,8 +1,9 @@
-import { Launch } from "../../../utils/types"
+import { Launch } from "../../../utils/types";
 
 const Images = ({launch}: {launch: Launch}) => (
   <>
-    {launch.links?.flickr_images && launch.links?.flickr_images.length > 0 &&
+    {launch.links?.flickr_images &&
+      launch.links?.flickr_images.length > 0 &&
       <div className="glass images-container details-section">
         {launch.links.flickr_images.map((imageLink: string) => (
           <>
@@ -17,5 +18,4 @@ const Images = ({launch}: {launch: Launch}) => (
     }
   </>
 );
-
 export default Images;

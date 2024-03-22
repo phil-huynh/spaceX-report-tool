@@ -1,14 +1,14 @@
-import { Launch } from '../../utils/types.ts'
-import { useStore } from '../ContextStore.tsx';
-import Loading from './utilityComponents/Loading.tsx';
-import useLaunchesQuery from '../hooks/useLaunchesQuery.ts';
-import useRefreshRedirect from '../hooks/useRefreshRedirect.ts';
 import { useNavigate } from 'react-router-dom';
 import { LinkToggleSet } from '../../utils/types.ts';
+import { Launch } from '../../utils/types.ts';
+import { useStore } from '../ContextStore.tsx';
+import useLaunchesQuery from '../hooks/useLaunchesQuery.ts';
+import useRefreshRedirect from '../hooks/useRefreshRedirect.ts';
+import Loading from './utilityComponents/Loading.tsx';
 
 export default function SpaceXList() {
-  useRefreshRedirect()
-  const navigate = useNavigate()
+  useRefreshRedirect();
+  const navigate = useNavigate();
 
   const {
     launchList,
@@ -22,23 +22,23 @@ export default function SpaceXList() {
     handleIntervalChange,
     setSelectedLaunch,
     unSnakeToTitle,
-  } = useStore()
+  } = useStore();
 
 
   if (!unSnakeToTitle || !setSelectedLaunch) {
-    throw new Error('function cannot be undefined')
+    throw new Error('function cannot be undefined');
   }
-  if (!launchList) throw new Error('launchList cannot be undefined')
-  if (!linkToggles) throw new Error('linkToggles cannot be undefined')
+  if (!launchList) throw new Error('launchList cannot be undefined');
+  if (!linkToggles) throw new Error('linkToggles cannot be undefined');
 
-  const {loading, error, data, headers} = useLaunchesQuery()
+  const {loading, error, data, headers} = useLaunchesQuery();
 
   if (loading) return <Loading/>;
   if (error) return `Error! ${error.message}`;
 
   const viewDetails: (launch: Launch) => void = (launch) => {
-    setSelectedLaunch(launch)
-    navigate('/launch-details')
+    setSelectedLaunch(launch);
+    navigate('/launch-details');
   }
 
   return (
@@ -142,7 +142,7 @@ export default function SpaceXList() {
       </>
       }
     </>
-  )
+  );
 }
 
 

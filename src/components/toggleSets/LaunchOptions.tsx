@@ -1,15 +1,14 @@
-import { useStore } from "../../ContextStore"
-import BulkSelector from "./BulkSelector"
-import { LaunchToggleSet } from "../../../utils/types"
+import { useStore } from "../../ContextStore";
+import { LaunchToggleSet } from "../../../utils/types";
+import BulkSelector from "./BulkSelector";
 
 export default function LaunchOptions() {
 
-  const{ launchToggles, handleLaunchToggles, unSnakeToTitle } = useStore()
+  const{ launchToggles, handleLaunchToggles, unSnakeToTitle } = useStore();
 
   if (!handleLaunchToggles || !unSnakeToTitle) {
-    throw new Error('function cannot be undefined')
+    throw new Error('function cannot be undefined');
   }
-
 
   return (
     <>
@@ -36,5 +35,5 @@ export default function LaunchOptions() {
         </div>
       }
     </>
-  )
+  );
 }

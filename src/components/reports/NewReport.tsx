@@ -1,33 +1,34 @@
+import { useStore } from "../../ContextStore";
+import { Launch } from "../../../utils/types";
+import useRefreshRedirect from "../../hooks/useRefreshRedirect";
 import ReportForm from "./ReportForm";
 import Stash from "../Stash";
-import { useStore } from "../../ContextStore";
 import BasicDetails from "../launchDetails/BasicDetails";
 import LinksSection from "../launchDetails/LinksSection";
 import Images from "../launchDetails/Images";
-import { Launch } from "../../../utils/types";
-import useRefreshRedirect from "../../hooks/useRefreshRedirect";
 
 export default function NewReport() {
-  useRefreshRedirect()
+  useRefreshRedirect();
   const {stash, selectedStashItem, finalReportStash, setFinalReportStash, setStash, setSelectedStashItem} = useStore();
 
-  if (!stash) throw new Error('stash cannot be undefined')
-  if (!selectedStashItem) throw new Error('selectedStashItem cannot be undefined')
-  if (!finalReportStash) throw new Error('finalReportStash cannot be undefined')
+  if (!stash) throw new Error('stash cannot be undefined');
+  if (!selectedStashItem) throw new Error('selectedStashItem cannot be undefined');
+  if (!finalReportStash) throw new Error('finalReportStash cannot be undefined');
+
   if (!setFinalReportStash || !setStash || !setSelectedStashItem) {
-    throw new Error('function cannot be undefined')
+    throw new Error('function cannot be undefined');
   }
 
   const updateFinalStash: (launch: Launch) => void = (launch) => {
     finalReportStash
       .filter((stashItem: Launch) => stashItem.id === launch.id).length < 1 &&
-        setFinalReportStash([...finalReportStash, launch])
+        setFinalReportStash([...finalReportStash, launch]);
     setStash([...stash?.filter((stashItem: Launch) => stashItem.id !== launch.id) || []])
-    if (stash?.filter((stashItem: Launch) => stashItem.id !== launch.id).length > 0) {
-      selectedStashItem.id === stash[0].id ? setSelectedStashItem(stash[1]) : setSelectedStashItem(stash[0])
-    }
-  }
 
+    if (stash?.filter((stashItem: Launch) => stashItem.id !== launch.id).length > 0) {
+      selectedStashItem.id === stash[0].id ? setSelectedStashItem(stash[1]) : setSelectedStashItem(stash[0]);
+    }
+  };
 
   return (
     <>

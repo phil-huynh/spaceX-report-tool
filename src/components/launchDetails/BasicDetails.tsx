@@ -24,4 +24,4 @@ const BasicDetails = ({launch}: {launch: Launch}) => (
     </table>
   </div>
 );
-export default BasicDetails
+export default BasicDetails;
