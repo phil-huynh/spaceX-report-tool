@@ -3,6 +3,9 @@ import { Launch } from "../../../utils/types";
 const BasicDetails = ({launch}: {launch: Launch}) => (
   <div className="basic-details">
     <table>
+      <thead>
+        <th colSpan={2} className="table-header glass"> Mission Details</th>
+      </thead>
       <tbody>
         <tr>
           <td className="glass">Mission</td>

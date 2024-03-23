@@ -32,7 +32,7 @@ export default function NewReport() {
 
   return (
     <>
-      <div style={{marginBottom: "1.5rem"}}>
+      <div>
         {stash.length > 0 ?
           <Stash stash={stash} stashSetter={setStash} finalStash={false}/>
           :
@@ -41,30 +41,47 @@ export default function NewReport() {
       </div>
 
       <div className="report-workspace">
-        <ReportForm/>
+
+
+          <ReportForm/>
         <div className="stash-viewer">
           {selectedStashItem &&
             <>
-              <div className="stash-viewer-buttons">
+              {/* <div className="stash-viewer-buttons">
                 <button
                   className="stash-add"
                   onClick={()=> updateFinalStash(selectedStashItem)}
                 >
                   Add to Final
                 </button>
+              </div> */}
+              <div>
               </div>
               <BasicDetails launch={selectedStashItem}/>
-              <div className="details-summary-new-report-container">
-                <div className="glass details-section details-summary-new-report">
-                  {selectedStashItem.details ? selectedStashItem.details : 'no details available'}
-                </div>
-              </div>
-              <LinksSection launch={selectedStashItem}/>
+              <table>
+                <thead>
+                  <tr className="glass table-header">
+                    {selectedStashItem.details ? 'Details' : 'No details available'}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="details-summary-new-report-container">
+                    <td className="glass details-section details-summary-new-report">
+                      {selectedStashItem.details ? selectedStashItem.details : ''}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <LinksSection launch={selectedStashItem}/>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <Images launch={selectedStashItem}/>
             </>
           }
         </div>
       </div>
-      <Images launch={selectedStashItem}/>
       <div style={{marginBottom: "1.5rem"}}>
         <div className="glass" style={{paddingBottom: '.rem'}}>
           <h2>Final Report Stash</h2>

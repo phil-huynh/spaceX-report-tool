@@ -30,9 +30,10 @@ export default function ReportForm() {
   };
 
   return (
+    <div className="report-form-container">
 
-    <div className="form-container">
       <form className="report-form glass" onSubmit={handleSubmit(onSubmit)}>
+
 
         <input
           {...register("title", {
@@ -41,7 +42,7 @@ export default function ReportForm() {
           })}
           className="form-input"
           placeholder="title"
-        />
+          />
         <p className="error">{errors.title?.message}</p>
 
         <input
@@ -51,7 +52,7 @@ export default function ReportForm() {
           })}
           className="form-input"
           placeholder="author"
-        />
+          />
         <p className="error">{errors.author?.message}</p>
 
         <textarea
@@ -62,10 +63,11 @@ export default function ReportForm() {
             validate: inputValidator
           })}
           placeholder="Enter your report here"
-        />
+          />
         <p className="error">{errors.report?.message}</p>
-
-        <input className="form-submit" type="submit"/>
+        {/* <div> */}
+          <input className="form-submit" type="submit"/>
+        {/* </div> */}
       </form>
     </div>
   );

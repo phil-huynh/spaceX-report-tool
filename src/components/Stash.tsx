@@ -30,6 +30,7 @@ export default function Stash ({
             <th className='table-header glass'>Launch Date</th>
             <th className='table-header glass'>Static Fire</th>
             <th className='table-header glass'>Details</th>
+            <th className='table-header glass'></th>
           </tr>
         </thead>
         <tbody>
@@ -39,8 +40,8 @@ export default function Stash ({
               <td className="glass">{launch.launch_date_local ? new Date(launch.launch_date_local).toLocaleDateString() : 'no date available' }</td>
               <td className="glass">{launch.static_fire_date_utc ? new Date(launch.static_fire_date_utc).toLocaleDateString() : 'no date available' }</td>
               <td className="glass">{launch.details ? launch.details : 'no details available' }</td>
-              <td>
-                <div>
+              <td className="glass">
+
                   <button
                     className="stash-remove-button"
                     onClick={()=> {
@@ -49,7 +50,7 @@ export default function Stash ({
                   >
                     Remove
                   </button>
-                </div>
+
               </td>
             </tr>
           )}

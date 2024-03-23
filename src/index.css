@@ -102,6 +102,9 @@ table{
   width: 100%;
 }
 
+.main-table {
+  position: relative;
+}
 
 th {
   font-size: 1rem;

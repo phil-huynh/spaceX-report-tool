@@ -46,40 +46,40 @@ export default function SpaceXList() {
       {data &&
       <>
         <div className='glass table-page-header'>
-          <h2>SpaceX Launches</h2>
-          <hr/>
           <div className='pagination-controls'>
-
             <span className='pagination-button' onClick={goToFirstPage}>First</span>
             <span className='pagination-button' onClick={goToPreviousPage}>Prev</span>
+            <select
+              className="interval-selector"
+              name="pagination_interval"
+              defaultValue={20}
+              onChange={handleIntervalChange}
+            >
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={40}>40</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+            </select>
             <span className='pagination-button' onClick={goToNextPage}>Next</span>
             <span className='pagination-button' onClick={goToLastPage}>Last</span>
           </div>
-          <select
-            className="interval-selector"
-            name="pagination_interval"
-            defaultValue={20}
-            onChange={handleIntervalChange}
-          >
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-            <option value={40}>40</option>
-            <option value={50}>50</option>
-            <option value={100}>100</option>
-          </select>
+
+          <hr/>
+          <h2 className='table-title'>SpaceX Launches</h2>
         </div>
-        <table>
+        <table className='main-table'>
           <thead>
             <tr>
               {headers.filter(header => header !== 'links').map((header) => (
                 header === 'static_fire_date_utc' ? 'static_fire_date' : header
               )).map((header) => (
-                <th key={header} className='table-header glass'>{unSnakeToTitle(header)}</th>
+                <th key={header} className='table-header main-table-header'>{unSnakeToTitle(header)}</th>
               ))}
               {headers.includes('links') && linkToggles?.flickr_images &&
-                <th className='table-header glass'>Has Images</th>}
+                <th className='table-header main-table-header'>Has Images</th>}
               {headers.includes('links') && linkToggles?.video_link &&
-                <th className='table-header glass'>Video Link</th>}
+                <th className='table-header main-table-header'>Video Link</th>}
               {headers.includes('links') &&
                 Object.keys(linkToggles)
                   .filter((link) => (
@@ -87,7 +87,7 @@ export default function SpaceXList() {
                     link !== 'video_link' &&
                     linkToggles[link as keyof LinkToggleSet]
                   )).length > 1 &&
-                <th className='table-header glass'>Has Links</th>}
+                <th className='table-header main-table-header'>Has Links</th>}
             </tr>
           </thead>
           <tbody>
