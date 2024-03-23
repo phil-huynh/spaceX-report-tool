@@ -48,16 +48,16 @@ export default function ReportForm() {
 
   return (
     <div className="report-form-container">
+        <div className="stash-viewer-buttons">
+          <button
+            className="stash-add"
+            onClick={()=> updateFinalStash(selectedStashItem)}
+          >
+            {'Add to Final ->'}
+          </button>
+        </div>
 
       <form className="report-form glass" onSubmit={handleSubmit(onSubmit)}>
-      <div className="stash-viewer-buttons">
-              <button
-                className="stash-add"
-                onClick={()=> updateFinalStash(selectedStashItem)}
-              >
-                Add to Final
-              </button>
-            </div>
         <div style={{display:"flex", justifyContent:"flex-end"}}>
           <input className="stash-add" type="submit"/>
         </div>
