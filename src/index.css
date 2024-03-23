@@ -114,10 +114,15 @@ th {
 }
 
 .table-header {
-  background-color: rgba(15, 244, 45, 0.2);
+  background-color: rgba(15, 244, 45, 0.5);
   box-shadow: 1px 1px 4px #57f608;
   font-size: 1.1rem;
   font-weight: bold;
+}
+
+.main-table-header {
+  position: sticky;
+  top: 0;
 }
 
 tr {
