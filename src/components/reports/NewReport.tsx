@@ -6,6 +6,7 @@ import Stash from "../Stash";
 import BasicDetails from "../launchDetails/BasicDetails";
 import LinksSection from "../launchDetails/LinksSection";
 import Images from "../launchDetails/Images";
+import LaunchSummary from "../launchDetails/LaunchSummary";
 
 export default function NewReport() {
   useRefreshRedirect();
@@ -19,16 +20,6 @@ export default function NewReport() {
     throw new Error('function cannot be undefined');
   }
 
-  const updateFinalStash: (launch: Launch) => void = (launch) => {
-    finalReportStash
-      .filter((stashItem: Launch) => stashItem.id === launch.id).length < 1 &&
-        setFinalReportStash([...finalReportStash, launch]);
-    setStash([...stash?.filter((stashItem: Launch) => stashItem.id !== launch.id) || []])
-
-    if (stash?.filter((stashItem: Launch) => stashItem.id !== launch.id).length > 0) {
-      selectedStashItem.id === stash[0].id ? setSelectedStashItem(stash[1]) : setSelectedStashItem(stash[0]);
-    }
-  };
 
   return (
     <>
@@ -39,49 +30,25 @@ export default function NewReport() {
           <div className="details-section glass">Stash is empty</div>
         }
       </div>
-
       <div className="report-workspace">
+        <div>
+          <div>
 
-
+          </div>
           <ReportForm/>
+        </div>
         <div className="stash-viewer">
           {selectedStashItem &&
-            <>
-              {/* <div className="stash-viewer-buttons">
-                <button
-                  className="stash-add"
-                  onClick={()=> updateFinalStash(selectedStashItem)}
-                >
-                  Add to Final
-                </button>
-              </div> */}
-              <div>
-              </div>
+            <div className="stash-viewer-item-container">
               <BasicDetails launch={selectedStashItem}/>
-              <table>
-                <thead>
-                  <tr className="glass table-header">
-                    {selectedStashItem.details ? 'Details' : 'No details available'}
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="details-summary-new-report-container">
-                    <td className="glass details-section details-summary-new-report">
-                      {selectedStashItem.details ? selectedStashItem.details : ''}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <LinksSection launch={selectedStashItem}/>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <Images launch={selectedStashItem}/>
-            </>
+              <LaunchSummary launch={selectedStashItem}/>
+              <LinksSection launch={selectedStashItem}/>
+            </div>
           }
+          {/* <div className="glass" style={{height: "100%", width: "100%"}}></div> */}
         </div>
       </div>
+          <Images launch={selectedStashItem}/>
       <div style={{marginBottom: "1.5rem"}}>
         <div className="glass" style={{paddingBottom: '.rem'}}>
           <h2>Final Report Stash</h2>
@@ -95,3 +62,14 @@ export default function NewReport() {
     </>
   )
 }
+
+
+
+           {/* <div className="stash-viewer-buttons">
+                <button
+                  className="stash-add"
+                  onClick={()=> updateFinalStash(selectedStashItem)}
+                >
+                  Add to Final
+                </button>
+              </div> */}

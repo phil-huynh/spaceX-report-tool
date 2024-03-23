@@ -27,8 +27,8 @@ export default function Stash ({
         <thead>
           <tr>
             <th className='table-header glass'>Mission</th>
-            <th className='table-header glass'>Launch Date</th>
             <th className='table-header glass'>Static Fire</th>
+            <th className='table-header glass'>Launch Date</th>
             <th className='table-header glass'>Details</th>
             <th className='table-header glass'></th>
           </tr>
@@ -39,7 +39,7 @@ export default function Stash ({
               <td className="glass">{launch.mission_name ? launch.mission_name : 'no mission name available' }</td>
               <td className="glass">{launch.launch_date_local ? new Date(launch.launch_date_local).toLocaleDateString() : 'no date available' }</td>
               <td className="glass">{launch.static_fire_date_utc ? new Date(launch.static_fire_date_utc).toLocaleDateString() : 'no date available' }</td>
-              <td className="glass">{launch.details ? launch.details : 'no details available' }</td>
+              <td className="glass details-summary">{launch.details ? launch.details : 'no details available' }</td>
               <td className="glass">
 
                   <button

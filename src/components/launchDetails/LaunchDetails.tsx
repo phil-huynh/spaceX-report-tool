@@ -6,6 +6,7 @@ import Stash from "../Stash";
 import BasicDetails from "./BasicDetails";
 import LinksSection from "./LinksSection";
 import Images from "./Images";
+import LaunchSummary from "./LaunchSummary";
 
 export default function LaunchDetails() {
   useRefreshRedirect();
@@ -30,20 +31,19 @@ export default function LaunchDetails() {
         <button className="stash-add" onClick={()=> addToStash()}>Add to Stash</button>
       </div>
       <Stash stash={stash} stashSetter={setStash} finalStash={false}/>
+
       <div className="details-top-container">
         <div className="details-container details-section">
           <BasicDetails launch={selectedLaunch}/>
+          <LaunchSummary launch={selectedLaunch}/>
+        </div>
+        <div>
           {selectedLaunch.links && Object.keys(selectedLaunch.links).slice(1)
             .filter(key => key !== 'flickr_images' && key !== 'video_link').length > 0 ?
             <LinksSection launch={selectedLaunch}/>
             :
             <div className="links-container glass details-section">no links abailable</div>
           }
-        </div>
-        <div className="details-summary-container">
-          <div className="glass details-section details-summary">
-            {selectedLaunch.details ? selectedLaunch.details : 'no details available'}
-          </div>
         </div>
       </div>
       <Images launch={selectedLaunch}/>

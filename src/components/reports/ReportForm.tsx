@@ -2,14 +2,31 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useStore } from "../../ContextStore.tsx";
 import inputValidator from "../../validation/inputValidator.ts";
 import { Report } from "../../../utils/types.ts";
+import { Launch } from "../../../utils/types.ts";
 
 
 export default function ReportForm() {
 
-  const { updateReports, finalReportStash, setFinalReportStash } = useStore();
+  const { updateReports, finalReportStash, setFinalReportStash, selectedStashItem, stash, setStash, setSelectedStashItem} = useStore();
 
-  if(!updateReports || !setFinalReportStash) throw new Error("function cannot be undefined");
-  if(!finalReportStash) throw new Error("finalReportStash cannot be undefined");
+  if (!updateReports || !setFinalReportStash || !setStash || !setSelectedStashItem) {
+    throw new Error("function cannot be undefined");
+  }
+  if (!finalReportStash) throw new Error("finalReportStash cannot be undefined");
+  if (!selectedStashItem) throw new Error("selectedStashItem cannot be undefined");
+  if (!stash) throw new Error("stash cannot be undefined");
+
+  const updateFinalStash: (launch: Launch) => void = (launch) => {
+    finalReportStash
+      .filter((stashItem: Launch) => stashItem.id === launch.id).length < 1 &&
+        setFinalReportStash([...finalReportStash, launch]);
+    setStash([...stash?.filter((stashItem: Launch) => stashItem.id !== launch.id) || []])
+
+    if (stash?.filter((stashItem: Launch) => stashItem.id !== launch.id).length > 0) {
+      selectedStashItem.id === stash[0].id ? setSelectedStashItem(stash[1]) : setSelectedStashItem(stash[0]);
+    }
+  };
+
 
   const {
     register,
@@ -33,7 +50,17 @@ export default function ReportForm() {
     <div className="report-form-container">
 
       <form className="report-form glass" onSubmit={handleSubmit(onSubmit)}>
-
+      <div className="stash-viewer-buttons">
+              <button
+                className="stash-add"
+                onClick={()=> updateFinalStash(selectedStashItem)}
+              >
+                Add to Final
+              </button>
+            </div>
+        <div style={{display:"flex", justifyContent:"flex-end"}}>
+          <input className="stash-add" type="submit"/>
+        </div>
 
         <input
           {...register("title", {
@@ -65,9 +92,7 @@ export default function ReportForm() {
           placeholder="Enter your report here"
           />
         <p className="error">{errors.report?.message}</p>
-        {/* <div> */}
-          <input className="form-submit" type="submit"/>
-        {/* </div> */}
+
       </form>
     </div>
   );
