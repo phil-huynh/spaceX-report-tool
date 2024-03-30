@@ -21,7 +21,7 @@ export default function ReportsList() {
     <>
       <div className="glass report-list-header">
         <div className="report-list-button-container">
-          <button className="stash-remove-button" onClick={()=>setReports('')}>clear history</button>
+          <button className="stash-remove-button" onClick={()=>setReports([])}>clear history</button>
         </div>
         <h2>Choose a report to view</h2>
       </div>
