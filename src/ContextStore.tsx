@@ -19,7 +19,7 @@ const ContextStore = createContext<Partial<ContextStoreType>>({});
 export default function ContextProvider ({ children }: ContextStoreProviderProps) {
 
   const launchList = useRef<[]>([]);
-  const [reports, setReports] = useLocalStorage ('reports', '');
+  const [reports, setReports] = useState<Report[]> ([]);
   const [selectedNav, setSelectedNav] = useState<string> ('options');
   const [startIndex, setStartIndex] = useState<number>(0);
   const [endIndex, setEndIndex] = useState<number>(20);
