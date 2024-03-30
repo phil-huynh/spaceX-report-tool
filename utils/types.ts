@@ -97,7 +97,7 @@ export type ContextStoreType = {
   setFinalReportStash: Dispatch<SetStateAction<Launch[]>>
   setLaunchToggles: Dispatch<SetStateAction<LaunchToggleSet>>;
   setLinkToggles: Dispatch<SetStateAction<LinkToggleSet>>;
-  setReports: Dispatch<SetStateAction<string>>;
+  setReports: Dispatch<SetStateAction<Report[]>>;
   setSelectedReport: Dispatch<SetStateAction<Report>>;
   setSelectedLaunch: Dispatch<SetStateAction<Launch>>;
   setRocketToggles: Dispatch<SetStateAction<RocketToggleSet>>;
