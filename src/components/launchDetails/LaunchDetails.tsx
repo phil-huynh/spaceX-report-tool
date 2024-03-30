@@ -39,7 +39,7 @@ export default function LaunchDetails() {
         </div>
         <div>
           {selectedLaunch.links && Object.keys(selectedLaunch.links).slice(1)
-            .filter(key => key !== 'flickr_images' && key !== 'video_link').length > 0 ?
+            .filter(key => key !== 'flickr_images').length > 0 ?
             <LinksSection launch={selectedLaunch}/>
             :
             <div className="links-container glass details-section">no links abailable</div>

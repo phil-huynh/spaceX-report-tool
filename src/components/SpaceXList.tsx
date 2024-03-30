@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { LinkToggleSet } from '../../utils/types.ts';
+import { LinkToggleSet, LaunchLinks } from '../../utils/types.ts';
 import { Launch } from '../../utils/types.ts';
 import { useStore } from '../ContextStore.tsx';
 import useLaunchesQuery from '../hooks/useLaunchesQuery.ts';
@@ -131,7 +131,7 @@ export default function SpaceXList() {
                   <td className='glass' >
                     {Object.keys(launch.links)
                       .filter((link) => (
-                        link !== 'flickr_images' && link !== 'video_link'
+                        link !== 'flickr_images' && link !== 'video_link' && launch.links && launch.links[link as keyof LaunchLinks]
                       )).length > 1 ? '🚀' : ''}
                   </td>
                 }
