@@ -86,7 +86,7 @@ export default function SpaceXList() {
                     link !== 'flickr_images' &&
                     link !== 'video_link' &&
                     linkToggles[link as keyof LinkToggleSet]
-                  )).length > 1 &&
+                  )).length > 0 &&
                 <th className='table-header main-table-header'>Has Links</th>}
             </tr>
           </thead>
