@@ -574,8 +574,10 @@ textarea {
 
 .report-list-header {
   padding-bottom: .4rem;
+  padding-top: .2rem;
   padding-inline: 1rem;
   margin-bottom: 2rem;
+
 }
 
 
