@@ -121,12 +121,12 @@ export default function SpaceXList() {
                     {launch.details ? launch.details : "No details available"}
                   </td>
                 }
-                {launch.links &&
+                {launch.links && linkToggles.flickr_images &&
                   <td className='glass' >
                     {launch.links.flickr_images && launch.links.flickr_images.length > 0 ? '🚀' : ''}
                   </td>
                 }
-                {launch.links &&<td className='glass'>{launch.links.video_link ? '🚀' : ''}</td>}
+                {launch.links && linkToggles.video_link && <td className='glass'>{launch.links.video_link ? '🚀' : ''}</td>}
                 {launch.links &&
                   <td className='glass' >
                     {Object.keys(launch.links)
