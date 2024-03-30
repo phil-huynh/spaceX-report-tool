@@ -127,7 +127,7 @@ export default function SpaceXList() {
                   </td>
                 }
                 {launch.links && linkToggles.video_link && <td className='glass'>{launch.links.video_link ? '🚀' : ''}</td>}
-                {launch.links &&
+                {launch.links && Object.keys(linkToggles).filter(toggle => linkToggles[toggle as keyof LinkToggleSet]).length > 0 &&
                   <td className='glass' >
                     {Object.keys(launch.links)
                       .filter((link) => (
