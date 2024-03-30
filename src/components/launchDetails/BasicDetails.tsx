@@ -4,7 +4,9 @@ const BasicDetails = ({launch}: {launch: Launch}) => (
   <div className="basic-details">
     <table>
       <thead>
-        <th colSpan={2} className="table-header glass"> Mission Details</th>
+        <tr>
+          <th colSpan={2} className="table-header glass"> Mission Details</th>
+        </tr>
       </thead>
       <tbody>
         <tr>

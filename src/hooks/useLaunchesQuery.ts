@@ -17,7 +17,6 @@ export default function useLaunchesQuery() {
   const canGetLinks = (
     launchToggles.links &&
       Object.keys(linkToggles)
-        .slice(1)
         .filter((key: string) => linkToggles[key as keyof LinkToggleSet])
         .length > 0
   );
@@ -25,7 +24,6 @@ export default function useLaunchesQuery() {
   const canGetRocketDetails = (
     launchToggles.rocket &&
       Object.keys(rocketToggles)
-        .slice(1)
         .filter((key: string) => rocketToggles[key as keyof RocketToggleSet])
         .length > 0
   );

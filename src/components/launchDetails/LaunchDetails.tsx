@@ -24,6 +24,8 @@ export default function LaunchDetails() {
     }
   };
 
+  console.log(selectedLaunch)
+
   return (
     <>
       <div className="details-button-container glass">
@@ -38,7 +40,7 @@ export default function LaunchDetails() {
           <LaunchSummary launch={selectedLaunch}/>
         </div>
         <div>
-          {selectedLaunch.links && Object.keys(selectedLaunch.links).slice(1)
+          {selectedLaunch.links && Object.keys(selectedLaunch.links)
             .filter(key => key !== 'flickr_images').length > 0 ?
             <LinksSection launch={selectedLaunch}/>
             :
